@@ -130,7 +130,6 @@ li {
 }
 .poster {
   height: 10rem;
-  max-width: 100%;
   object-fit: cover;
   object-position: center;
 }
