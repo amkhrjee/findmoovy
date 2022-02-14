@@ -130,6 +130,9 @@ li {
 }
 .poster {
   height: 10rem;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 li h3 {
   padding: 1rem;
