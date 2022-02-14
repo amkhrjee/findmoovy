@@ -1,11 +1,13 @@
 {
   "name": "movieapp",
-  "version": "0.0.0",
+  "homepage": "https://amkhrjee.github.io/vuemovieapp/",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 5050",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "vue": "^3.2.29",
