@@ -47,13 +47,9 @@ const search = () => {
       <ul>
         <li v-for="movie in movieList" :key="movie.imdbID">
           <RouterLink :to="'/movies/' + movie.imdbID">
-            <img
-              class="poster"
-              :src="movie.Poster"
-              style="height: 18rem"
-              :alt="movie.Title + ' Poster'"
-            />
+            <img class="poster" :src="movie.Poster" :alt="movie.Title + ' Poster'" />
           </RouterLink>
+          <div class="type">{{ movie.Type }}</div>
           <h3>{{ movie.Title }}</h3>
         </li>
       </ul>
@@ -124,7 +120,7 @@ ul {
 }
 li {
   background: #3c3c3b;
-
+  position: relative;
   margin: 2rem 0;
   border-radius: 12px;
   display: flex;
@@ -133,5 +129,23 @@ li {
   color: #fff;
 }
 .poster {
+  height: 10rem;
+}
+li h3 {
+  padding: 1rem;
+  color: #ebebd3;
+}
+
+.type {
+  position: absolute;
+  left: 0;
+  bottom: 1rem;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-transform: capitalize;
+  border-radius: 0 10px 10px 0;
+  padding: 0.5rem;
+  font-weight: 600;
+  backdrop-filter: blur(5px);
 }
 </style>
