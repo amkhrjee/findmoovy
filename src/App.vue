@@ -11,6 +11,12 @@ import { RouterLink, RouterView } from "vue-router";
   <main>
     <RouterView />
   </main>
+  <footer>
+    <span>
+      Made with 🍵 by
+      <a href="https://www.twitter.com/amkhrjee" target="_blank">amkhrjee</a>
+    </span>
+  </footer>
 </template>
 
 <style>
@@ -38,5 +44,21 @@ header h2 {
 }
 a {
   text-decoration: none;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  color: #758283;
+  left: 50%;
+}
+footer span {
+  font-size: 0.75rem;
+  position: relative;
+  left: -50%;
+  bottom: 1rem;
+}
+footer a {
+  text-decoration: none;
+  color: #1da1f2;
 }
 </style>
