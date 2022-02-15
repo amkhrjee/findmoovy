@@ -69,6 +69,10 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
   width: 100vw;
 }
 
+.home {
+  width: 100vw;
+}
+
 .featured-card {
   height: auto;
   width: 100%;
@@ -98,7 +102,6 @@ input {
   outline: none;
   background: none;
   font-size: 1rem;
-
   width: 100%;
 }
 /* .search-box:focus,
@@ -112,21 +115,27 @@ input::placeholder {
 }
 
 .search-box {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding: 1rem;
   color: #fff;
   font-weight: 800;
-  flex-grow: 3;
+  flex-grow: 4;
 }
 .submit {
-  background-color: #1446a0;
-  width: 10%;
+  background-color: #242b2e;
+  width: 2rem;
   height: auto;
-  padding: 1rem 0;
+
   text-transform: uppercase;
   border-radius: 12px;
   flex-grow: 1;
-  font-size: 1rem;
+  font-size: 1.5rem;
+}
+button {
+  text-decoration: none;
+  appearance: none;
+  border: none;
+  box-sizing: content-box;
 }
 .submit:focus {
   background-color: #3c3c3b;
