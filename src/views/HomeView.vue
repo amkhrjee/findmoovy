@@ -5,7 +5,7 @@ const searchText = ref("");
 const movieList = ref([]);
 const search = () => {
   if (searchText.value != "") {
-    fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchText.value}`)
+    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchText.value}`)
       .then((res) => res.json())
       .then((data) => {
         movieList.value = data.Search;
