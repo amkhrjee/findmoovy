@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <header>
     <RouterLink to="/">
-      <h1>Moovy</h1>
+      <h1>FindMoovy</h1>
     </RouterLink>
   </header>
   <main>

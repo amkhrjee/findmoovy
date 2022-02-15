@@ -17,41 +17,45 @@ onBeforeMount(() => {
 <template>
   <div class="movie">
     <h1>{{ movie.Title }}</h1>
-    <h2>Number of Seasons: {{ movie.totalSeasons }}</h2>
+    <h3>Number of Seasons: {{ movie.totalSeasons }}</h3>
     <img :src="movie.Poster" />
     <div class="container">
       <div class="year">
-        <h2>{{ movie.Year }}</h2>
+        <h3>{{ movie.Year }}</h3>
         <p>Year</p>
       </div>
       <div class="rating">
-        <h2>{{ movie.Rated }}</h2>
+        <h3>{{ movie.Rated }}</h3>
         <p>Rated</p>
       </div>
       <div class="genre">
-        <h2>{{ movie.Genre }}</h2>
+        <h3>{{ movie.Genre }}</h3>
         <p>Genre</p>
       </div>
       <div class="imdbRating">
-        <h2>{{ movie.imdbRating }}</h2>
+        <h3>{{ movie.imdbRating }}</h3>
         <p>IMDB Rating</p>
       </div>
       <div class="seasons">
-        <h2>{{ movie.totalSeasons }}</h2>
+        <h3>{{ movie.totalSeasons }}</h3>
         <p>Total Seasons</p>
       </div>
       <div class="language">
-        <h2>{{ movie.Language }}</h2>
+        <h3>{{ movie.Language }}</h3>
         <p>Language</p>
       </div>
     </div>
     <div class="plot">
-      <h2>What's the plot?</h2>
+      <h3>What's the plot?</h3>
       <p>{{ movie.Plot }}</p>
     </div>
     <div class="awards">
-      <h2>Awards and Nominations</h2>
+      <h3>Awards and Nominations</h3>
       <p>{{ movie.Awards }}</p>
+    </div>
+    <div class="actors">
+      <h3>Lead Actors</h3>
+      <p>{{ movie.Actors }}</p>
     </div>
   </div>
 </template>
@@ -109,7 +113,7 @@ onBeforeMount(() => {
   text-align: left;
   padding: 1rem;
 }
-.plot h2 {
+.plot h3 {
   padding-bottom: 1rem;
 }
 
@@ -118,7 +122,16 @@ onBeforeMount(() => {
   text-align: left;
   padding: 1rem;
 }
-.awards h2 {
+.awards h3 {
+  padding-bottom: 1rem;
+}
+
+.actors {
+  color: #fff;
+  text-align: left;
+  padding: 1rem;
+}
+.actors h3 {
   padding-bottom: 1rem;
 }
 </style>

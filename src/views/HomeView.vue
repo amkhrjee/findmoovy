@@ -10,28 +10,32 @@ const search = () => {
       .then((data) => {
         movieList.value = data.Search;
         searchText.value = "";
+        console.log(data);
       });
   }
 };
+
+//featured movie
+const featuredMovie = ref({});
+fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
+  .then((res) => res.json())
+  .then((data) => (featuredMovie.value = data));
 </script>
 
 <template>
   <div class="home">
     <div class="featured-card">
+      <div class="featured-text">Featured</div>
       <RouterLink to="/movies/tt0487831">
         <img
-          src="https://images-na.ssl-images-amazon.com/images/I/814E7D8mMQL._RI_.jpg"
-          alt="The IT Crowd Poster"
+          :src="featuredMovie.Poster"
+          alt="The Big Bang Theory Poster"
           class="featured-image"
         />
       </RouterLink>
       <div class="details">
-        <h3>The IT Crowd</h3>
-        <p>
-          Two tech geeks are based out of a Reynholm Industries' basement. When a new
-          supervisor is hired, she turns out to be illiterate in technology and together
-          they land in hilarious situations.
-        </p>
+        <h3>The Big Bang Theory</h3>
+        <p>{{ featuredMovie.Plot }}</p>
       </div>
     </div>
     <form @submit.prevent="search" class="search-box">
@@ -61,8 +65,15 @@ const search = () => {
   width: 100vw;
 }
 
+.home {
+  width: 100vw;
+}
+
+.home {
+  width: 100vw;
+}
+
 .featured-card {
-  background-color: red;
   height: auto;
   width: 100%;
   position: relative;
@@ -117,19 +128,23 @@ input::placeholder {
 }
 ul {
   padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 li {
   background: #3c3c3b;
   position: relative;
-  margin: 2rem 0;
+
   border-radius: 12px;
-  display: flex;
+
   height: auto;
   overflow: hidden;
   color: #fff;
 }
 .poster {
-  height: 10rem;
+  height: 18rem;
+  display: block;
   object-fit: cover;
   object-position: center;
 }
@@ -138,10 +153,15 @@ li h3 {
   color: #ebebd3;
 }
 
+li h4 {
+  padding: 1rem;
+  color: #ebebd3;
+}
+
 .type {
   position: absolute;
   left: 0;
-  bottom: 1rem;
+  top: 1rem;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.6);
   text-transform: capitalize;
@@ -149,5 +169,16 @@ li h3 {
   padding: 0.5rem;
   font-weight: 600;
   backdrop-filter: blur(5px);
+}
+
+.featured-text {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border-radius: 12px;
+  padding: 0.5rem;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
 }
 </style>
