@@ -26,7 +26,7 @@ import { RouterLink, RouterView } from "vue-router";
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 body {
   background-color: #000000;
@@ -45,17 +45,19 @@ header h2 {
 a {
   text-decoration: none;
 }
+main {
+  height: auto;
+}
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   color: #758283;
-  left: 50%;
+  display: flex;
+  justify-content: center;
 }
 footer span {
-  font-size: 0.75rem;
-  position: relative;
-  left: -50%;
-  bottom: 1rem;
+  font-size: 0.8rem;
+  padding: 1rem;
 }
 footer a {
   text-decoration: none;
