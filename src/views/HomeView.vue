@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
+
 const searchText = ref("");
 const movieList = ref([]);
 const search = () => {
@@ -39,12 +40,15 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
       </div>
     </div>
     <form @submit.prevent="search" class="search-box">
-      <input
-        class="search-box"
-        v-model="searchText"
-        type="text"
-        placeholder="What are you looking for?"
-      />
+      <RouterLink to="#search-box">
+        <input
+          class="search-box"
+          id="search-box"
+          v-model="searchText"
+          type="text"
+          placeholder="What are you looking for?"
+        />
+      </RouterLink>
       <input class="submit" type="submit" />
     </form>
     <div class="movie-list">
@@ -61,6 +65,10 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
   </div>
 </template>
 <style>
+.home {
+  width: 100vw;
+}
+
 .home {
   width: 100vw;
 }
@@ -93,6 +101,7 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
 }
 form {
   padding: 1rem;
+  width: 100vw;
 }
 input {
   appearance: none;
@@ -102,12 +111,18 @@ input {
   display: block;
   font-size: 1rem;
 }
+/* .search-box:focus,
+.search-box::after {
+  background: red;
+  height: 34px;
+  position: absolute;
+} */
 input::placeholder {
   color: grey;
 }
 
 .search-box {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 1rem;
   color: #fff;
   font-weight: 800;
@@ -118,7 +133,7 @@ input::placeholder {
   height: auto;
   padding: 1rem 0;
   text-transform: uppercase;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #fff;
   border-radius: 10px;
