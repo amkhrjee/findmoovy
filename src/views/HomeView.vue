@@ -18,7 +18,7 @@ const search = () => {
 
 //featured movie
 const featuredMovie = ref({});
-fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
+fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
   .then((res) => res.json())
   .then((data) => (featuredMovie.value = data));
 </script>
@@ -27,14 +27,14 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
   <div class="home">
     <div class="featured-card">
       <div class="featured-text">🌟 Featured</div>
-      <RouterLink to="/movies/tt0898266">
+      <RouterLink to="/movies/tt2660888">
         <img
           :src="featuredMovie.Poster"
           alt="The Big Bang Theory Poster"
           class="featured-image"
         />
         <div class="details">
-          <h3>The Big Bang Theory ↗️</h3>
+          <h3>{{ featuredMovie.Title }} ↗️</h3>
           <p>{{ featuredMovie.Plot }}</p>
         </div>
       </RouterLink>
@@ -46,7 +46,7 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
           id="search-box"
           v-model="searchText"
           type="text"
-          placeholder="What are you looking for?"
+          placeholder="Looking for something?"
         />
       </RouterLink>
       <button class="submit" type="submit">🔍</button>
@@ -123,13 +123,13 @@ input::placeholder {
 }
 .submit {
   background-color: #242b2e;
-  width: 2rem;
+  width: 1.5rem;
   height: auto;
 
   text-transform: uppercase;
   border-radius: 12px;
   flex-grow: 1;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 button {
   text-decoration: none;
