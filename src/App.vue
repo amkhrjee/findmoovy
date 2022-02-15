@@ -5,7 +5,7 @@ import { RouterLink, RouterView } from "vue-router";
 <template>
   <header>
     <RouterLink to="/">
-      <h1>FindMoovy</h1>
+      <h2>FindMoovy</h2>
     </RouterLink>
   </header>
   <main>
@@ -33,7 +33,7 @@ header {
   justify-content: center;
   align-items: center;
 }
-h1 {
+h2 {
   color: #da4167;
 }
 a {
