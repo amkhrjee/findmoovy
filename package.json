@@ -10,6 +10,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "lodash-es": "^4.17.21",
     "vue": "^3.2.29",
     "vue-router": "^4.0.12"
   },

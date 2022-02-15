@@ -1,9 +1,27 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
+import { debounce } from "lodash-es";
 
 const searchText = ref("");
 const movieList = ref([]);
+const searchTerm = ref("");
+const searchList = ref([]);
+
+const update = debounce((e) => {
+  searchTerm.value = e.target.value;
+  console.log(searchTerm.value);
+}, 300);
+
+if (searchTerm.value != "") {
+  fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchTerm.value}`)
+    .then((res) => res.json)
+    .then((data) => {
+      console.log(data);
+      searchList.value = data;
+    });
+}
+
 const search = () => {
   if (searchText.value != "") {
     fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchText.value}`)
@@ -39,7 +57,7 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
         </div>
       </RouterLink>
     </div>
-    <form @submit.prevent="search" class="search-box">
+    <form @submit.prevent="search">
       <RouterLink to="#search-box">
         <input
           class="search-box"
@@ -47,9 +65,18 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
           v-model="searchText"
           type="text"
           placeholder="Looking for something?"
+          @input="update"
         />
       </RouterLink>
+
       <button class="submit" type="submit">🔍</button>
+      <div
+        v-if="searchList.length != 0"
+        v-for="search in searchList"
+        class="search-suggest"
+      >
+        <p>{{ search.Title }} ↗️</p>
+      </div>
     </form>
     <div class="movie-list">
       <ul>
@@ -65,10 +92,6 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
   </div>
 </template>
 <style>
-.home {
-  width: 100vw;
-}
-
 .home {
   width: 100vw;
 }
@@ -94,7 +117,10 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
 form {
   padding: 1rem;
   width: 100vw;
-  display: flex;
+  display: grid;
+  border: red 1px solid;
+  grid-template-columns: 3fr 1fr;
+  justify-content: space-between;
 }
 input {
   appearance: none;
@@ -104,12 +130,7 @@ input {
   font-size: 1rem;
   width: 100%;
 }
-/* .search-box:focus,
-.search-box::after {
-  background: red;
-  height: 34px;
-  position: absolute;
-} */
+
 input::placeholder {
   color: grey;
 }
@@ -119,16 +140,18 @@ input::placeholder {
   padding: 1rem;
   color: #fff;
   font-weight: 800;
-  flex-grow: 4;
+  border: red 1px;
+  border-radius: 12px 0 0 12px;
+  background-color: #120e43;
 }
+
 .submit {
   background-color: #242b2e;
-  width: 1.5rem;
-  height: auto;
 
+  height: auto;
   text-transform: uppercase;
-  border-radius: 12px;
-  flex-grow: 1;
+  border-radius: 0 12px 12px 0;
+
   font-size: 1rem;
 }
 button {
@@ -194,5 +217,15 @@ li h4 {
   backdrop-filter: blur(5px);
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
+}
+
+.search-suggest {
+  display: block;
+  grid-column: span 2;
+  border-radius: 12px;
+  color: #fff;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background-color: #120e43;
 }
 </style>
