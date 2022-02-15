@@ -33,7 +33,7 @@ header {
   justify-content: center;
   align-items: center;
 }
-h2 {
+header h2 {
   color: #da4167;
 }
 a {

@@ -26,18 +26,18 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
 <template>
   <div class="home">
     <div class="featured-card">
-      <div class="featured-text">Featured</div>
-      <RouterLink to="/movies/tt0487831">
+      <div class="featured-text">🌟 Featured</div>
+      <RouterLink to="/movies/tt0898266">
         <img
           :src="featuredMovie.Poster"
           alt="The Big Bang Theory Poster"
           class="featured-image"
         />
+        <div class="details">
+          <h3>The Big Bang Theory ↗️</h3>
+          <p>{{ featuredMovie.Plot }}</p>
+        </div>
       </RouterLink>
-      <div class="details">
-        <h3>The Big Bang Theory</h3>
-        <p>{{ featuredMovie.Plot }}</p>
-      </div>
     </div>
     <form @submit.prevent="search" class="search-box">
       <RouterLink to="#search-box">
@@ -49,7 +49,7 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
           placeholder="What are you looking for?"
         />
       </RouterLink>
-      <input class="submit" type="submit" />
+      <button class="submit" type="submit">🔍</button>
     </form>
     <div class="movie-list">
       <ul>
@@ -65,18 +65,6 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
   </div>
 </template>
 <style>
-.home {
-  width: 100vw;
-}
-
-.home {
-  width: 100vw;
-}
-
-.home {
-  width: 100vw;
-}
-
 .home {
   width: 100vw;
 }
@@ -102,14 +90,16 @@ fetch(`https://www.omdbapi.com/?i=tt0898266&apikey=9e23561e`)
 form {
   padding: 1rem;
   width: 100vw;
+  display: flex;
 }
 input {
   appearance: none;
   border: none;
   outline: none;
   background: none;
-  display: block;
   font-size: 1rem;
+
+  width: 100%;
 }
 /* .search-box:focus,
 .search-box::after {
@@ -126,17 +116,17 @@ input::placeholder {
   padding: 1rem;
   color: #fff;
   font-weight: 800;
+  flex-grow: 3;
 }
 .submit {
   background-color: #1446a0;
-  width: 100%;
+  width: 10%;
   height: auto;
   padding: 1rem 0;
   text-transform: uppercase;
+  border-radius: 12px;
+  flex-grow: 1;
   font-size: 1rem;
-  font-weight: 400;
-  color: #fff;
-  border-radius: 10px;
 }
 .submit:focus {
   background-color: #3c3c3b;

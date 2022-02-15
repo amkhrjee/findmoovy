@@ -16,7 +16,7 @@ onBeforeMount(() => {
 </script>
 <template>
   <div class="movie">
-    <h1>{{ movie.Title }}</h1>
+    <h2 style="color: #fff">{{ movie.Title }}</h2>
     <h3>Number of Seasons: {{ movie.totalSeasons }}</h3>
     <img :src="movie.Poster" />
     <div class="container">
@@ -46,15 +46,15 @@ onBeforeMount(() => {
       </div>
     </div>
     <div class="plot">
-      <h3>What's the plot?</h3>
+      <h3>🗒️What's the plot?</h3>
       <p>{{ movie.Plot }}</p>
     </div>
     <div class="awards">
-      <h3>Awards and Nominations</h3>
+      <h3>🎗️ Awards and Nominations</h3>
       <p>{{ movie.Awards }}</p>
     </div>
     <div class="actors">
-      <h3>Lead Actors</h3>
+      <h3>🧑🏻‍🎤 Lead Actors</h3>
       <p>{{ movie.Actors }}</p>
     </div>
   </div>
