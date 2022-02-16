@@ -11,15 +11,15 @@ const searchList = ref([]);
 const update = debounce((e) => {
   searchTerm.value = e.target.value;
   console.log(searchTerm.value);
+  searchSuggest()
 }, 300);
 
-if (searchTerm.value != "") {
-  fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchTerm.value}`)
-    .then((res) => res.json)
-    .then((data) => {
-      console.log(data);
-      searchList.value = data;
-    });
+const searchSuggest = () => {
+  if (searchTerm.value.length != 0) {
+    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchTerm.value}`).then(res => res.json()).then(data => {
+      searchList.value = data.Search.slice(0, 7)
+    })
+  }
 }
 
 const search = () => {
@@ -46,11 +46,7 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
     <div class="featured-card">
       <div class="featured-text">🌟 Featured</div>
       <RouterLink to="/movies/tt2660888">
-        <img
-          :src="featuredMovie.Poster"
-          alt="The Big Bang Theory Poster"
-          class="featured-image"
-        />
+        <img :src="featuredMovie.Poster" alt="The Big Bang Theory Poster" class="featured-image" />
         <div class="details">
           <h3>{{ featuredMovie.Title }} ↗️</h3>
           <p>{{ featuredMovie.Plot }}</p>
@@ -70,11 +66,7 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
       </RouterLink>
 
       <button class="submit" type="submit">🔍</button>
-      <div
-        v-if="searchList.length != 0"
-        v-for="search in searchList"
-        class="search-suggest"
-      >
+      <div v-if="searchList.length != 0" v-for="search in searchList" class="search-suggest">
         <p>{{ search.Title }} ↗️</p>
       </div>
     </form>
@@ -118,7 +110,6 @@ form {
   padding: 1rem;
   width: 100vw;
   display: grid;
-  border: red 1px solid;
   grid-template-columns: 3fr 1fr;
   justify-content: space-between;
 }
@@ -140,7 +131,7 @@ input::placeholder {
   padding: 1rem;
   color: #fff;
   font-weight: 800;
-  border: red 1px;
+
   border-radius: 12px 0 0 12px;
   background-color: #120e43;
 }
