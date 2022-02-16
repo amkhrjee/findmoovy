@@ -36,9 +36,13 @@ onBeforeMount(() => {
         <h3>{{ movie.imdbRating }}</h3>
         <p>IMDB Rating</p>
       </div>
-      <div class="seasons">
+      <div v-if="movie.Type == 'series'" class="seasons">
         <h3>{{ movie.totalSeasons }}</h3>
         <p>Total Seasons</p>
+      </div>
+      <div v-if="movie.Type == 'movie'" class="runtime">
+        <h3>{{ movie.Runtime }}</h3>
+        <p>Runtime</p>
       </div>
       <div class="language">
         <h3>{{ movie.Language }}</h3>
@@ -89,6 +93,11 @@ onBeforeMount(() => {
   border-radius: 12px;
 }
 .genre {
+  background-color: #3c3c3b;
+  padding: 1rem;
+  border-radius: 12px;
+}
+.runtime {
   background-color: #3c3c3b;
   padding: 1rem;
   border-radius: 12px;

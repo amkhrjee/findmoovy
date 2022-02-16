@@ -18,6 +18,8 @@ const searchSuggest = () => {
   if (searchTerm.value.length != 0) {
     fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchTerm.value}`).then(res => res.json()).then(data => {
       searchList.value = data.Search.slice(0, 7)
+    }).catch(() => {
+      return
     })
   }
 }
@@ -36,23 +38,13 @@ const search = () => {
 
 //featured movie
 const featuredMovie = ref({});
-fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
+fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=9e23561e`)
   .then((res) => res.json())
   .then((data) => (featuredMovie.value = data));
 </script>
 
 <template>
   <div class="home">
-    <div class="featured-card">
-      <div class="featured-text">🌟 Featured</div>
-      <RouterLink to="/movies/tt2660888">
-        <img :src="featuredMovie.Poster" alt="The Big Bang Theory Poster" class="featured-image" />
-        <div class="details">
-          <h3>{{ featuredMovie.Title }} ↗️</h3>
-          <p>{{ featuredMovie.Plot }}</p>
-        </div>
-      </RouterLink>
-    </div>
     <form @submit.prevent="search">
       <RouterLink to="#search-box">
         <input
@@ -86,6 +78,16 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
           <h3>{{ movie.Title }}</h3>
         </li>
       </ul>
+    </div>
+    <div class="featured-card">
+      <div class="featured-text">🌟 Featured</div>
+      <RouterLink to="/movies/tt11198330">
+        <img :src="featuredMovie.Poster" alt="The Big Bang Theory Poster" class="featured-image" />
+        <div class="details">
+          <h3>{{ featuredMovie.Title }} ↗️</h3>
+          <p>{{ featuredMovie.Plot }}</p>
+        </div>
+      </RouterLink>
     </div>
   </div>
 </template>

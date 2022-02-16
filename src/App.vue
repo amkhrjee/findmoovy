@@ -13,7 +13,8 @@ import { RouterLink, RouterView } from "vue-router";
   </main>
   <footer>
     <span>
-      Made with 🍵 by
+      Made with
+      <span style="color: #42b883; margin: 0; padding: 0;">Vue3</span> & 🍵 by
       <a href="https://www.twitter.com/amkhrjee" target="_blank">amkhrjee</a>
     </span>
   </footer>
