@@ -67,7 +67,9 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
 
       <button class="submit" type="submit">🔍</button>
       <div v-if="searchList.length != 0" v-for="search in searchList" class="search-suggest">
-        <p>{{ search.Title }} ↗️</p>
+        <RouterLink :to="'/movies/' + search.imdbID">
+          <p style="color: #fff;">{{ search.Title }} ↗️</p>
+        </RouterLink>
       </div>
     </form>
     <div class="movie-list">
@@ -86,6 +88,10 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
 <style>
 .home {
   width: 100vw;
+}
+
+a {
+  text-decoration: none;
 }
 
 .featured-card {
