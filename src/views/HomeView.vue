@@ -66,7 +66,11 @@ fetch(`https://www.omdbapi.com/?i=tt2660888&apikey=9e23561e`)
       </RouterLink>
 
       <button class="submit" type="submit">🔍</button>
-      <div v-if="searchList.length != 0" v-for="search in searchList" class="search-suggest">
+      <div
+        v-if="searchList.length != 0 && (searchText.length != 0)"
+        v-for="search in searchList"
+        class="search-suggest"
+      >
         <RouterLink :to="'/movies/' + search.imdbID">
           <p style="color: #fff;">{{ search.Title }} ↗️</p>
         </RouterLink>
