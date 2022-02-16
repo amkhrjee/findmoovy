@@ -45,7 +45,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=9e23561e`)
 
 <template>
   <div class="home">
-    <form @submit.prevent="search">
+    <form autocomplete="off" @submit.prevent="search">
       <RouterLink to="#search-box">
         <input
           class="search-box"
