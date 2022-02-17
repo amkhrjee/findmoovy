@@ -60,7 +60,7 @@ onBeforeMount(() => {
         {{ movie.Plot.length < 200 ? movie.Plot : movie.Plot.slice(0, 200) }}
         <span
           @click="isReadMore"
-          style="color: blue;"
+          style="color: #5DA3FA;"
         >read more...</span>
       </p>
       <p v-if="readMore">{{ movie.Plot }}</p>
@@ -87,45 +87,49 @@ onBeforeMount(() => {
   border-radius: 12px;
 }
 .container {
+  margin-top: 1.5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
   padding: 1rem;
   color: #fff;
+  align-items: center;
+  background-image: linear-gradient(#000, #120e43);
+  border-radius: 12px;
 }
 
 .year {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
 .rating {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
 .genre {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
 .runtime {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
 .imdbRating {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
 .seasons {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
 .language {
-  background-color: #3c3c3b;
+  background-color: #03203c;
   padding: 1rem;
   border-radius: 12px;
 }
