@@ -1,19 +1,38 @@
 <script setup>
+import { ref } from "vue";
 import { RouterLink } from "vue-router";
 
+const showAll = ref(true)
+const showMovies = ref(false)
+const showSeries = ref(false)
+const showGames = ref(false)
+
+const handleShowMovies = () => {
+    showMovies.value = true;
+    showAll.value = false
+}
+const handleShowSeries = () => {
+    showSeries.value = true;
+    showAll.value = false
+}
+const handleShowGames = () => {
+    showGames.value = true;
+    showAll.value = false
+}
 defineProps({
     movieList: Array
 })
+
 </script>
 <template>
-    <div v-if="movieList" class="movie-list">
+    <div v-if="movieList.length != 0" class="movie-list">
         <div class="sort-by">
-            <button class="all">🍿 All</button>
-            <button class="movies">🎬 Movies</button>
-            <button class="series">🎞️ Series</button>
-            <button class="games">🎮 Games</button>
+            <button @click="showAll = true" class="all">🍿 All</button>
+            <button @click="handleShowMovies" class="movies">🎬 Movies</button>
+            <button @click="handleShowSeries" class="series">🎞️ Series</button>
+            <button @click="handleShowGames" class="games">🎮 Games</button>
         </div>
-        <ul v-if="movieList">
+        <ul v-if="movieList && showAll">
             <li v-for="movie in movieList" :key="movie.imdbID">
                 <RouterLink :to="'/movies/' + movie.imdbID">
                     <img class="poster" :src="movie.Poster" :alt="movie.Title + ' Poster'" />
@@ -22,7 +41,16 @@ defineProps({
                 <h3>{{ movie.Title }}</h3>
             </li>
         </ul>
-        <h2 style="color: wheat;" v-else>No results</h2>
+        <ul v-if="movieList && showMovies">
+            <li v-for="movie in movieList" :key="movie.imdbID">
+                <RouterLink :to="'/movies/' + movie.imdbID">
+                    <img class="poster" :src="movie.Poster" :alt="movie.Title + ' Poster'" />
+                </RouterLink>
+                <div class="type">{{ movie.Type }}</div>
+                <h3>{{ movie.Title }}</h3>
+            </li>
+        </ul>
+        <h2 style="color: wheat;" v-if="movieList.length == 0">No results</h2>
     </div>
 </template>
 <style>
