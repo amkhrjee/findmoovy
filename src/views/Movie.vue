@@ -4,7 +4,12 @@ import { useRoute } from "vue-router";
 
 const movie = ref({});
 const route = useRoute();
+const readMore = ref(false)
 
+const isReadMore = () => {
+  readMore.value = !readMore.value
+  console.log('hello');
+}
 onBeforeMount(() => {
   fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=9e23561e&plot=full`)
     .then((res) => res.json())
@@ -51,7 +56,14 @@ onBeforeMount(() => {
     </div>
     <div class="plot">
       <h3>🗒️What's the plot?</h3>
-      <p>{{ movie.Plot }}</p>
+      <p v-if="!readMore">
+        {{ movie.Plot.length < 200 ? movie.Plot : movie.Plot.slice(0, 200) }}
+        <span
+          @click="isReadMore"
+          style="color: blue;"
+        >read more...</span>
+      </p>
+      <p v-if="readMore">{{ movie.Plot }}</p>
     </div>
     <div class="awards">
       <h3>🎗️ Awards and Nominations</h3>
