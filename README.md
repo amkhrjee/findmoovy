@@ -4,4 +4,4 @@
 
 FindMoovy is an experimental app for trying out Vue3 and other web technologies.
 
-Link for `main`: https://www.findmoovy.netlify.app
+Link for `main`: [FindMoovy](https://findmoovy.netlify.app/)
