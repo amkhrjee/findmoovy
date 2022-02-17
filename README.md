@@ -1,35 +1,7 @@
-# movieapp
+# FindMoovy
 
-This template should help get you started developing with Vue 3 in Vite.
+FindMoovy is an experimental app for trying out Vue3 and other web technologies.
 
-## Recommended IDE Setup
+Link for `main`: https://www.findmoovy.netlify.app
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fd2ced65-889e-479a-8d46-b5e668811428/deploy-status)](https://app.netlify.com/sites/findmoovy/deploys)
