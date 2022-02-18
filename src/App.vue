@@ -7,9 +7,14 @@ import { RouterLink, RouterView } from "vue-router";
     <RouterLink to="/">
       <h2>FindMoovy</h2>
     </RouterLink>
-    <RouterLink to="https://github.com/amkhrjee/findmoovy">
+    <a
+      href="https://github.com/amkhrjee/findmoovy"
+      alt="Link to github repo"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img class="gh-logo" src="./assets/ghlogo.png" alt="github logo" />
-    </RouterLink>
+    </a>
   </header>
   <div class="wrapper">
     <main>
@@ -58,6 +63,7 @@ header h2 {
 a {
   text-decoration: none;
 }
+
 main {
   height: auto;
 }
