@@ -11,16 +11,18 @@ import { RouterLink, RouterView } from "vue-router";
       <img class="gh-logo" src="./assets/ghlogo.png" alt="github logo" />
     </RouterLink>
   </header>
-  <main>
-    <RouterView />
-  </main>
-  <footer>
-    <span>
-      Made with
-      <span style="color: #42b883; margin: 0; padding: 0">Vue3</span> & 🍵 by
-      <a href="https://www.twitter.com/amkhrjee" target="_blank">amkhrjee</a>
-    </span>
-  </footer>
+  <div class="wrapper">
+    <main>
+      <RouterView />
+    </main>
+    <footer>
+      <span>
+        Made with
+        <span style="color: #42b883; margin: 0; padding: 0">Vue3</span> & 🍵 by
+        <a href="https://www.twitter.com/amkhrjee" target="_blank">amkhrjee</a>
+      </span>
+    </footer>
+  </div>
 </template>
 
 <style>
@@ -57,6 +59,12 @@ a {
 }
 main {
   height: auto;
+}
+.wrapper {
+  height: 90vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }
 footer {
   position: relative;
