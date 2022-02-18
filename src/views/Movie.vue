@@ -19,7 +19,7 @@ const shareLink = () => {
 }
 const copyToClipboard = () => {
   navigator.clipboard.writeText(link.value.url)
-  alert('Copied text: ' + link.value.url)
+  navigator.vibrate(200)
 }
 const isReadMore = () => {
   readMore.value = !readMore.value
