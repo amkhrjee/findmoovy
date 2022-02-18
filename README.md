@@ -1,7 +1,7 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fd2ced65-889e-479a-8d46-b5e668811428/deploy-status)](https://app.netlify.com/sites/findmoovy/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/495e17cd-49c3-489e-ad5b-f61e9a43040a/deploy-status)](https://app.netlify.com/sites/modest-mirzakhani-8e7e52/deploys)
 
-# FindMoovy
+# FindMoovy Refactored-One
 
-FindMoovy is an experimental app for trying out Vue3 and other web technologies.
+This branch is the refactored and improved version of the `main` branch.
 
-Link for `main`: [FindMoovy](https://findmoovy.netlify.app/)
+Link for `refactored-one`: [FindMoovy - One](https://onefindmoovy.netlify.app/)
