@@ -11,7 +11,7 @@ const isReadMore = () => {
   console.log('hello');
 }
 onBeforeMount(() => {
-  fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=9e23561e&plot=full`)
+  fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=${env.apiKey}&plot=full`)
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;

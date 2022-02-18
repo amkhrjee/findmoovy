@@ -3,11 +3,16 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
-
+import env from '@/env.js'
 const searchText = ref("");
 const movieList = ref([]);
 const searchTerm = ref("");
 const searchList = ref([]);
+
+const showAll = ref(true)
+const showMovies = ref(false)
+const showSeries = ref(false)
+const showGames = ref(false)
 
 const update = debounce((e) => {
   searchTerm.value = e.target.value;
@@ -17,7 +22,7 @@ const update = debounce((e) => {
 
 const searchSuggest = () => {
   if (searchTerm.value.length != 0) {
-    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchTerm.value}`).then(res => res.json()).then(data => {
+    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchTerm.value}`).then(res => res.json()).then(data => {
       searchList.value = data.Search.slice(0, 7)
     }).catch(() => {
       return
@@ -27,7 +32,7 @@ const searchSuggest = () => {
 
 const search = () => {
   if (searchText.value != "") {
-    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=9e23561e&s=${searchText.value}`)
+    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchText.value}`)
       .then((res) => res.json())
       .then((data) => {
         movieList.value = data.Search;
@@ -37,9 +42,35 @@ const search = () => {
   }
 };
 
+const handleShowAll = () => {
+  showMovies.value = false;
+  showAll.value = true
+  showSeries.value = false
+  showGames.value = false
+}
+const handleShowMovies = () => {
+  showMovies.value = true;
+  showAll.value = false
+  showSeries.value = false
+  showGames.value = false
+}
+const handleShowSeries = () => {
+  showSeries.value = true;
+  showAll.value = false
+  showMovies.value = true
+  showGames.value = false
+}
+const handleShowGames = () => {
+  showGames.value = true;
+  showAll.value = false
+  showMovies.value = false
+  showSeries.value = false
+}
+
+
 //featured movie
 const featuredMovie = ref({});
-fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=9e23561e`)
+fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
   .then((res) => res.json())
   .then((data) => (featuredMovie.value = data));
 </script>
@@ -69,7 +100,17 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=9e23561e`)
         </RouterLink>
       </div>
     </form>
-    <MovieCard :movie-list="movieList" />
+    <div v-if="movieList.length != 0" class="sort-by">
+      <button @click="handleShowAll" class="all">🍿 All</button>
+      <button @click="handleShowMovies" class="movies">🎬 Movies</button>
+      <button @click="handleShowSeries" class="series">🎞️ Series</button>
+      <button @click="handleShowGames" class="games">🎮 Games</button>
+    </div>
+    <MovieCard v-if="showAll" :movie-list="movieList" />
+    <MovieCard v-if="showMovies" :movie-list="movieList.filter(movie => movie.Type = 'movie')" />
+    <MovieCard v-if="showSeries" :movie-list="movieList.filter(movie => movie.Type = 'series')" />
+    <MovieCard v-if="showGames" :movie-list="movieList.filter(movie => movie.Type = 'game')" />
+
     <div class="featured-card">
       <div class="featured-text">🌟 Featured</div>
       <RouterLink to="/movies/tt11198330">
@@ -177,5 +218,57 @@ button {
   margin-top: 0.5rem;
   padding: 1rem;
   background-color: #120e43;
+}
+.sort-by {
+  display: flex;
+  padding: 1rem;
+  justify-content: center;
+}
+.all {
+  color: #fff;
+  margin-right: 1rem;
+  background-color: #e07c24;
+  border-radius: 12px;
+  padding: 0.5rem;
+  border: solid 2px #e07c24;
+}
+.all:focus {
+  border: solid 2px red;
+}
+.movies {
+  color: #fff;
+
+  margin-right: 1rem;
+  background-color: #d82e2f;
+  border-radius: 12px;
+  padding: 0.5rem;
+  border: solid 2px #d82e2f;
+}
+.movies:focus {
+  border: 2px solid #e07c24;
+}
+.series {
+  color: #fff;
+
+  margin-right: 1rem;
+  background-color: #5a20cb;
+  border-radius: 12px;
+  padding: 0.5rem;
+  border: solid 2px #5a20cb;
+}
+.series:focus {
+  border: 2px solid #bf3312;
+}
+.games {
+  color: #fff;
+
+  margin-right: 1rem;
+  background-color: #8d3daf;
+  border-radius: 12px;
+  padding: 0.5rem;
+  border: solid 2px #8d3daf;
+}
+.games:focus {
+  border: 2px solid #bf3312;
 }
 </style>
