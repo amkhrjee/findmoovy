@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount, ref, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import env from '@/env.js'
 
 
@@ -10,7 +10,7 @@ const readMore = ref(false)
 const link = ref({
   title: 'FindMoovy' + movie.value.Title,
   text: 'Check out this movie!',
-  url: `https://onefindmoovy.netlify.app/${route.params.id}`
+  url: `https://www.imdb.com/title/${route.params.id}`
 })
 const shareLink = () => {
   if (navigator.share) {
