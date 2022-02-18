@@ -10,7 +10,7 @@ const readMore = ref(false)
 const link = ref({
   title: 'FindMoovy' + movie.value.Title,
   text: 'Check out this movie!',
-  url: `https://onefindmoovy.netlift.app/${route.params.id}`
+  url: `https://onefindmoovy.netlify.app/${route.params.id}`
 })
 const shareLink = () => {
   if (navigator.share) {
