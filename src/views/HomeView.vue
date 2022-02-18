@@ -111,7 +111,9 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
     <MovieCard v-if="showSeries" :movie-list="movieList.filter(movie => movie.Type = 'series')" />
     <MovieCard v-if="showGames" :movie-list="movieList.filter(movie => movie.Type = 'game')" />
 
-    <div v-if="searchText.length == 0" class="featured-card"></div>
+    <div v-if="searchText.length == 0" class="featured-card">
+      <img class="featured-image" src="@/assets/search.svg" alt="an svg" />
+    </div>
   </div>
 </template>
 <style>
@@ -130,20 +132,16 @@ svg {
   height: auto;
   width: 100%;
   position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  margin-bottom: 5rem;
 }
 .featured-image {
-  width: 100%;
-  z-index: 0;
-}
-.details {
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
+  width: 50%;
   padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  backdrop-filter: blur(5px);
 }
+
 form {
   padding: 1rem;
   width: 100vw;
