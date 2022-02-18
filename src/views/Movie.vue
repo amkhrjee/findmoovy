@@ -1,6 +1,8 @@
 <script setup>
 import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
+import env from '@/env.js'
+
 
 const movie = ref({});
 const route = useRoute();
