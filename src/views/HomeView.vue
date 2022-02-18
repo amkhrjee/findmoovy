@@ -111,16 +111,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
     <MovieCard v-if="showSeries" :movie-list="movieList.filter(movie => movie.Type = 'series')" />
     <MovieCard v-if="showGames" :movie-list="movieList.filter(movie => movie.Type = 'game')" />
 
-    <div class="featured-card">
-      <div class="featured-text">🌟 Featured</div>
-      <RouterLink to="/movies/tt11198330">
-        <img :src="featuredMovie.Poster" alt="The Big Bang Theory Poster" class="featured-image" />
-        <div class="details">
-          <h3>{{ featuredMovie.Title }} ↗️</h3>
-          <p>{{ featuredMovie.Plot }}</p>
-        </div>
-      </RouterLink>
-    </div>
+    <div v-if="searchText.length == 0" class="featured-card"></div>
   </div>
 </template>
 <style>
@@ -131,7 +122,10 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
 a {
   text-decoration: none;
 }
-
+svg {
+  width: 100%;
+  height: 10rem;
+}
 .featured-card {
   height: auto;
   width: 100%;

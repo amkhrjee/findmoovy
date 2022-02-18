@@ -17,6 +17,10 @@ const shareLink = () => {
     navigator.share(link.value).then(() => console.log('success')).catch(err => console.log(err))
   }
 }
+const copyToClipboard = () => {
+  navigator.clipboard.writeText(link.value.url)
+  alert('Copied text: ' + link.value.url)
+}
 const isReadMore = () => {
   readMore.value = !readMore.value
 
@@ -84,7 +88,10 @@ onBeforeMount(() => {
       <h3>🧑🏻‍🎤 Lead Actors</h3>
       <p>{{ movie.Actors }}</p>
     </div>
-    <button @click="shareLink" class="share">Share</button>
+    <div class="share-copy">
+      <button @click="shareLink" class="share">🔗 Share</button>
+      <button @click="copyToClipboard" class="copy">📋 Copy</button>
+    </div>
   </div>
 </template>
 <style>
@@ -171,10 +178,22 @@ onBeforeMount(() => {
 .actors h3 {
   padding-bottom: 1rem;
 }
+.share-copy {
+  display: flex;
+  justify-content: space-around;
+}
 .share {
   padding: 1rem;
   border-radius: 12px;
   background-color: #5a20cb;
+  color: #fff;
+  font-weight: 600;
+  width: 50%;
+}
+.copy {
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #5da3fa;
   color: #fff;
   font-weight: 600;
 }
