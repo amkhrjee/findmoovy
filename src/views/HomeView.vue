@@ -16,7 +16,7 @@ const showGames = ref(false);
 
 const update = debounce((e) => {
   searchTerm.value = e.target.value;
-  console.log(searchTerm.value);
+
   searchSuggest();
 }, 300);
 
@@ -44,7 +44,7 @@ const search = () => {
       .then((data) => {
         movieList.value = data.Search;
         searchText.value = "";
-        console.log(data);
+
       });
   }
 };
@@ -64,7 +64,7 @@ const handleShowMovies = () => {
 const handleShowSeries = () => {
   showSeries.value = true;
   showAll.value = false;
-  showMovies.value = true;
+  showMovies.value = false;
   showGames.value = false;
 };
 const handleShowGames = () => {
@@ -113,14 +113,17 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
       <button @click="handleShowGames" class="games">🎮 Games</button>
     </div>
     <MovieCard v-if="showAll" :movie-list="movieList" />
-    <MovieCard v-if="showMovies" :movie-list="movieList.filter((movie) => (movie.Type = 'movie'))" />
+    <MovieCard
+      v-if="showMovies"
+      :movie-list="movieList.filter((movie) => (movie.Type === 'movie'))"
+    />
     <MovieCard
       v-if="showSeries"
-      :movie-list="movieList.filter((movie) => (movie.Type = 'series'))"
+      :movie-list="movieList.filter((movie) => (movie.Type === 'series'))"
     />
-    <MovieCard v-if="showGames" :movie-list="movieList.filter((movie) => (movie.Type = 'game'))" />
+    <MovieCard v-if="showGames" :movie-list="movieList.filter((movie) => (movie.Type === 'game'))" />
 
-    <div v-if="searchText.length == 0" class="featured-card">
+    <div v-if="searchText.length === 0" class="featured-card">
       <img class="featured-image" src="@/assets/search.svg" alt="an svg" />
     </div>
   </div>
