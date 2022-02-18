@@ -3,7 +3,7 @@ import { onBeforeMount, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import env from '@/env.js'
 
-
+const copied = ref(false)
 const movie = ref({});
 const route = useRoute();
 const readMore = ref(false)
@@ -19,7 +19,8 @@ const shareLink = () => {
 }
 const copyToClipboard = () => {
   navigator.clipboard.writeText(link.value.url)
-  navigator.vibrate(200)
+  navigator.vibrate(100)
+  copied.value = true
 }
 const isReadMore = () => {
   readMore.value = !readMore.value
@@ -90,7 +91,7 @@ onBeforeMount(() => {
     </div>
     <div class="share-copy">
       <button @click="shareLink" class="share">🔗 Share</button>
-      <button @click="copyToClipboard" class="copy">📋 Copy</button>
+      <button @click="copyToClipboard" class="copy">{{ copied ? "✅ Copied" : "📋 Copy" }}</button>
     </div>
   </div>
 </template>
@@ -196,5 +197,8 @@ onBeforeMount(() => {
   background-color: #5da3fa;
   color: #fff;
   font-weight: 600;
+}
+.copy:focus {
+  background-color: #ff6666;
 }
 </style>
