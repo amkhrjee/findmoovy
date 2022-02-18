@@ -10,14 +10,14 @@ const readMore = ref(false)
 
 const isReadMore = () => {
   readMore.value = !readMore.value
-  console.log('hello');
+
 }
 onBeforeMount(() => {
   fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=${env.apiKey}&plot=full`)
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;
-      console.log(data);
+
     });
 });
 </script>
@@ -59,7 +59,7 @@ onBeforeMount(() => {
     <div class="plot">
       <h3>🗒️What's the plot?</h3>
       <p v-if="!readMore">
-        {{ movie.Plot.length < 200 ? movie.Plot : movie.Plot.slice(0, 200) }}
+        {{ movie.Plot?.length < 200 ? movie.Plot : movie.Plot?.slice(0, 200) }}
         <span
           @click="isReadMore"
           style="color: #5DA3FA;"
