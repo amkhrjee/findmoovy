@@ -1,37 +1,38 @@
 <script setup>
 import { onBeforeMount, ref, computed } from "vue";
 import { useRoute } from "vue-router";
-import env from '@/env.js'
+import env from "@/env.js";
 
-const copied = ref(false)
+const copied = ref(false);
 const movie = ref({});
 const route = useRoute();
-const readMore = ref(false)
+const readMore = ref(false);
 const link = ref({
-  title: 'FindMoovy' + movie.value.Title,
-  text: 'Check out this movie!',
-  url: `https://www.imdb.com/title/${route.params.id}`
-})
+  title: "FindMoovy" + movie.value.Title,
+  text: "Check out this movie!",
+  url: `https://www.imdb.com/title/${route.params.id}`,
+});
 const shareLink = () => {
   if (navigator.share) {
-    navigator.share(link.value).then(() => console.log('success')).catch(err => console.log(err))
+    navigator
+      .share(link.value)
+      .then(() => console.log("success"))
+      .catch((err) => console.log(err));
   }
-}
+};
 const copyToClipboard = () => {
-  navigator.clipboard.writeText(link.value.url)
-  navigator.vibrate(100)
-  copied.value = true
-}
+  navigator.clipboard.writeText(link.value.url);
+  navigator.vibrate(100);
+  copied.value = true;
+};
 const isReadMore = () => {
-  readMore.value = !readMore.value
-
-}
+  readMore.value = !readMore.value;
+};
 onBeforeMount(() => {
   fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=${env.apiKey}&plot=full`)
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;
-
     });
 });
 </script>
@@ -74,10 +75,7 @@ onBeforeMount(() => {
       <h3>🗒️What's the plot?</h3>
       <p v-if="!readMore">
         {{ movie.Plot?.length < 200 ? movie.Plot : movie.Plot?.slice(0, 200) }}
-        <span
-          @click="isReadMore"
-          style="color: #5DA3FA;"
-        >read more...</span>
+        <span @click="isReadMore" style="color: #5da3fa">read more...</span>
       </p>
       <p v-if="readMore">{{ movie.Plot }}</p>
     </div>
@@ -91,7 +89,9 @@ onBeforeMount(() => {
     </div>
     <div class="share-copy">
       <button @click="shareLink" class="share">🔗 Share</button>
-      <button @click="copyToClipboard" class="copy">{{ copied ? "✅ Copied" : "📋 Copy" }}</button>
+      <button @click="copyToClipboard" class="copy">
+        {{ copied ? "✅ Copied" : "📋 Copy" }}
+      </button>
     </div>
   </div>
 </template>

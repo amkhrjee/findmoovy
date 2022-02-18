@@ -3,36 +3,43 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
-import env from '@/env.js'
+import env from "@/env.js";
 const searchText = ref("");
 const movieList = ref([]);
 const searchTerm = ref("");
 const searchList = ref([]);
 
-const showAll = ref(true)
-const showMovies = ref(false)
-const showSeries = ref(false)
-const showGames = ref(false)
+const showAll = ref(true);
+const showMovies = ref(false);
+const showSeries = ref(false);
+const showGames = ref(false);
 
 const update = debounce((e) => {
   searchTerm.value = e.target.value;
   console.log(searchTerm.value);
-  searchSuggest()
+  searchSuggest();
 }, 300);
 
 const searchSuggest = () => {
   if (searchTerm.value.length != 0) {
-    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchTerm.value}`).then(res => res.json()).then(data => {
-      searchList.value = data.Search.slice(0, 7)
-    }).catch(() => {
-      return
-    })
+    fetch(
+      `https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchTerm.value}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        searchList.value = data.Search.slice(0, 7);
+      })
+      .catch(() => {
+        return;
+      });
   }
-}
+};
 
 const search = () => {
   if (searchText.value != "") {
-    fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchText.value}`)
+    fetch(
+      `https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchText.value}`
+    )
       .then((res) => res.json())
       .then((data) => {
         movieList.value = data.Search;
@@ -44,29 +51,28 @@ const search = () => {
 
 const handleShowAll = () => {
   showMovies.value = false;
-  showAll.value = true
-  showSeries.value = false
-  showGames.value = false
-}
+  showAll.value = true;
+  showSeries.value = false;
+  showGames.value = false;
+};
 const handleShowMovies = () => {
   showMovies.value = true;
-  showAll.value = false
-  showSeries.value = false
-  showGames.value = false
-}
+  showAll.value = false;
+  showSeries.value = false;
+  showGames.value = false;
+};
 const handleShowSeries = () => {
   showSeries.value = true;
-  showAll.value = false
-  showMovies.value = true
-  showGames.value = false
-}
+  showAll.value = false;
+  showMovies.value = true;
+  showGames.value = false;
+};
 const handleShowGames = () => {
   showGames.value = true;
-  showAll.value = false
-  showMovies.value = false
-  showSeries.value = false
-}
-
+  showAll.value = false;
+  showMovies.value = false;
+  showSeries.value = false;
+};
 
 //featured movie
 const featuredMovie = ref({});
@@ -91,12 +97,12 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
 
       <button class="submit" type="submit">🔍</button>
       <div
-        v-if="searchList.length != 0 && (searchText.length != 0)"
+        v-if="searchList.length != 0 && searchText.length != 0"
         v-for="search in searchList"
         class="search-suggest"
       >
         <RouterLink :to="'/movies/' + search.imdbID">
-          <p style="color: #fff;">{{ search.Title }} ↗️</p>
+          <p style="color: #fff">{{ search.Title }} ↗️</p>
         </RouterLink>
       </div>
     </form>
@@ -107,9 +113,18 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
       <button @click="handleShowGames" class="games">🎮 Games</button>
     </div>
     <MovieCard v-if="showAll" :movie-list="movieList" />
-    <MovieCard v-if="showMovies" :movie-list="movieList.filter(movie => movie.Type = 'movie')" />
-    <MovieCard v-if="showSeries" :movie-list="movieList.filter(movie => movie.Type = 'series')" />
-    <MovieCard v-if="showGames" :movie-list="movieList.filter(movie => movie.Type = 'game')" />
+    <MovieCard
+      v-if="showMovies"
+      :movie-list="movieList.filter((movie) => (movie.Type = 'movie'))"
+    />
+    <MovieCard
+      v-if="showSeries"
+      :movie-list="movieList.filter((movie) => (movie.Type = 'series'))"
+    />
+    <MovieCard
+      v-if="showGames"
+      :movie-list="movieList.filter((movie) => (movie.Type = 'game'))"
+    />
 
     <div v-if="searchText.length == 0" class="featured-card">
       <img class="featured-image" src="@/assets/search.svg" alt="an svg" />
