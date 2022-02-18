@@ -1,13 +1,22 @@
 <script setup>
-import { onBeforeMount, ref } from "vue";
-import { useRoute } from "vue-router";
+import { onBeforeMount, ref, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import env from '@/env.js'
 
 
 const movie = ref({});
 const route = useRoute();
 const readMore = ref(false)
-
+const link = ref({
+  title: 'FindMoovy' + movie.value.Title,
+  text: 'Check out this movie!',
+  url: `https://onefindmoovy.netlift.app/${route.params.id}`
+})
+const shareLink = () => {
+  if (navigator.share) {
+    navigator.share(link.value).then(() => console.log('success')).catch(err => console.log(err))
+  }
+}
 const isReadMore = () => {
   readMore.value = !readMore.value
 
@@ -75,6 +84,7 @@ onBeforeMount(() => {
       <h3>🧑🏻‍🎤 Lead Actors</h3>
       <p>{{ movie.Actors }}</p>
     </div>
+    <button @click="shareLink" class="share">Share</button>
   </div>
 </template>
 <style>
@@ -160,5 +170,12 @@ onBeforeMount(() => {
 }
 .actors h3 {
   padding-bottom: 1rem;
+}
+.share {
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: #5a20cb;
+  color: #fff;
+  font-weight: 600;
 }
 </style>
