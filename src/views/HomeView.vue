@@ -44,7 +44,6 @@ const search = () => {
       .then((data) => {
         movieList.value = data.Search;
         searchText.value = "";
-
       });
   }
 };
