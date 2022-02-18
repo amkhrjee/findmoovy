@@ -141,7 +141,7 @@ a {
 }
 svg {
   width: 100%;
-  height: 10rem;
+  height: 10em;
 }
 .featured-card {
   height: auto;
@@ -149,16 +149,16 @@ svg {
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 10rem;
-  margin-bottom: 5rem;
+  margin-top: 10em;
+  margin-bottom: 5em;
 }
 .featured-image {
   width: 50%;
-  padding: 1rem;
+  padding: 1em;
 }
 
 form {
-  padding: 1rem;
+  padding: 1em;
   width: 100vw;
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -169,7 +169,7 @@ input {
   border: none;
   outline: none;
   background: none;
-  font-size: 1rem;
+  font-size: 1em;
   width: 100%;
 }
 
@@ -178,8 +178,8 @@ input::placeholder {
 }
 
 .search-box {
-  font-size: 1rem;
-  padding: 1rem;
+  font-size: 1em;
+  padding: 1em;
   color: #fff;
   font-weight: 800;
 
@@ -194,7 +194,7 @@ input::placeholder {
   text-transform: uppercase;
   border-radius: 0 12px 12px 0;
 
-  font-size: 1rem;
+  font-size: 1em;
 }
 button {
   text-decoration: none;
@@ -208,10 +208,10 @@ button {
 
 .featured-text {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 1em;
+  left: 1em;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.5em;
   backdrop-filter: blur(5px);
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
@@ -222,21 +222,21 @@ button {
   grid-column: span 2;
   border-radius: 12px;
   color: #fff;
-  margin-top: 0.5rem;
-  padding: 1rem;
+  margin-top: 0.5em;
+  padding: 1em;
   background-color: #120e43;
 }
 .sort-by {
   display: flex;
-  padding: 1rem;
+  padding: 1em;
   justify-content: center;
 }
 .all {
   color: #fff;
-  margin-right: 1rem;
+  margin-right: 1em;
   background-color: #e07c24;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.5em;
   border: solid 2px #e07c24;
 }
 .all:focus {
@@ -245,10 +245,10 @@ button {
 .movies {
   color: #fff;
 
-  margin-right: 1rem;
+  margin-right: 1em;
   background-color: #d82e2f;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.5em;
   border: solid 2px #d82e2f;
 }
 .movies:focus {
@@ -257,10 +257,10 @@ button {
 .series {
   color: #fff;
 
-  margin-right: 1rem;
+  margin-right: 1em;
   background-color: #5a20cb;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.5em;
   border: solid 2px #5a20cb;
 }
 .series:focus {
@@ -269,10 +269,10 @@ button {
 .games {
   color: #fff;
 
-  margin-right: 1rem;
+  margin-right: 1em;
   background-color: #8d3daf;
   border-radius: 12px;
-  padding: 0.5rem;
+  padding: 0.5em;
   border: solid 2px #8d3daf;
 }
 .games:focus {

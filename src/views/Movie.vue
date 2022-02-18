@@ -1,5 +1,5 @@
 <script setup>
-import { onBeforeMount, ref, computed } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import env from "@/env.js";
 
@@ -97,7 +97,7 @@ onBeforeMount(() => {
 </template>
 <style>
 .movie {
-  padding: 1rem;
+  padding: 1em;
   text-align: center;
 }
 .movie h1 {
@@ -107,11 +107,11 @@ onBeforeMount(() => {
   border-radius: 12px;
 }
 .container {
-  margin-top: 1.5rem;
+  margin-top: 1.5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  padding: 1rem;
+  gap: 0.5em;
+  padding: 1em;
   color: #fff;
   align-items: center;
   background-image: linear-gradient(#000, #120e43);
@@ -120,71 +120,71 @@ onBeforeMount(() => {
 
 .year {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .rating {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .genre {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .runtime {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .imdbRating {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .seasons {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .language {
   background-color: #03203c;
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
 }
 .plot {
   color: #fff;
   text-align: left;
-  padding: 1rem;
+  padding: 1em;
 }
 .plot h3 {
-  padding-bottom: 1rem;
+  padding-bottom: 1em;
 }
 
 .awards {
   color: #fff;
   text-align: left;
-  padding: 1rem;
+  padding: 1em;
 }
 .awards h3 {
-  padding-bottom: 1rem;
+  padding-bottom: 1em;
 }
 
 .actors {
   color: #fff;
   text-align: left;
-  padding: 1rem;
+  padding: 1em;
 }
 .actors h3 {
-  padding-bottom: 1rem;
+  padding-bottom: 1em;
 }
 .share-copy {
   display: flex;
   justify-content: space-around;
 }
 .share {
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
   background-color: #5a20cb;
   color: #fff;
@@ -192,7 +192,7 @@ onBeforeMount(() => {
   width: 50%;
 }
 .copy {
-  padding: 1rem;
+  padding: 1em;
   border-radius: 12px;
   background-color: #5da3fa;
   color: #fff;
