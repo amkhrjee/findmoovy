@@ -113,18 +113,12 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
       <button @click="handleShowGames" class="games">🎮 Games</button>
     </div>
     <MovieCard v-if="showAll" :movie-list="movieList" />
-    <MovieCard
-      v-if="showMovies"
-      :movie-list="movieList.filter((movie) => (movie.Type = 'movie'))"
-    />
+    <MovieCard v-if="showMovies" :movie-list="movieList.filter((movie) => (movie.Type = 'movie'))" />
     <MovieCard
       v-if="showSeries"
       :movie-list="movieList.filter((movie) => (movie.Type = 'series'))"
     />
-    <MovieCard
-      v-if="showGames"
-      :movie-list="movieList.filter((movie) => (movie.Type = 'game'))"
-    />
+    <MovieCard v-if="showGames" :movie-list="movieList.filter((movie) => (movie.Type = 'game'))" />
 
     <div v-if="searchText.length == 0" class="featured-card">
       <img class="featured-image" src="@/assets/search.svg" alt="an svg" />
@@ -150,7 +144,6 @@ svg {
   display: flex;
   justify-content: center;
   margin-top: 10em;
-  margin-bottom: 5em;
 }
 .featured-image {
   width: 50%;
