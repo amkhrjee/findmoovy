@@ -2,73 +2,31 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 defineProps({
-    movieList: Array
-})
+  movieList: Array,
+});
 </script>
 <template>
-    <div class="movie-list">
-        <ul>
-            <li v-for="movie in movieList" :key="movie.imdbID">
-                <RouterLink :to="'/movies/' + movie.imdbID">
-                    <img class="poster" :src="movie.Poster" :alt="movie.Title + ' Poster'" />
-                </RouterLink>
-                <div class="type">{{ movie.Type }}</div>
-                <h3>{{ movie.Title }}</h3>
-            </li>
-        </ul>
-    </div>
+  <div class="movie-list">
+    <ul class="p-4 grid grid-cols-2 gap-4">
+      <li
+        class="bg-slate-700 rounded-xl relative h-auto overflow-hidden"
+        v-for="movie in movieList"
+        :key="movie.imdbID"
+      >
+        <RouterLink :to="'/movies/' + movie.imdbID">
+          <img
+            class="h-72 block object-cover object-center"
+            :src="movie.Poster"
+            :alt="movie.Title + ' Poster'"
+          />
+        </RouterLink>
+        <div
+          class="absolute left-0 top-4 text-white bg-black opacity-60 text-bold p-2 rounded-r-lg backdrop-blur-lg capitalize"
+        >
+          {{ movie.Type }}
+        </div>
+        <h3 class="p-4 text-slate-300">{{ movie.Title }}</h3>
+      </li>
+    </ul>
+  </div>
 </template>
-<style>
-button button {
-    text-decoration: none;
-    border: none;
-    appearance: none;
-    margin: 0;
-    padding: 0;
-    box-sizing: content-box;
-}
-ul {
-    padding: 1rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-li {
-    background: #3c3c3b;
-    position: relative;
-
-    border-radius: 12px;
-
-    height: auto;
-    overflow: hidden;
-    color: #fff;
-}
-.poster {
-    height: 18rem;
-    display: block;
-    object-fit: cover;
-    object-position: center;
-}
-li h3 {
-    padding: 1rem;
-    color: #ebebd3;
-}
-
-li h4 {
-    padding: 1rem;
-    color: #ebebd3;
-}
-
-.type {
-    position: absolute;
-    left: 0;
-    top: 1rem;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6);
-    text-transform: capitalize;
-    border-radius: 0 10px 10px 0;
-    padding: 0.5rem;
-    font-weight: 600;
-    backdrop-filter: blur(5px);
-}
-</style>
