@@ -81,11 +81,11 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
 </script>
 
 <template>
-  <div class="home">
-    <form autocomplete="off" @submit.prevent="search">
+  <div class="w-screen">
+    <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
       <RouterLink to="#search-box">
         <input
-          class="search-box"
+          class="text-xs p-4 text-slate-50 text-bold rounded-l-lg bg-slate-900"
           id="search-box"
           v-model="searchText"
           type="text"
@@ -94,7 +94,9 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
         />
       </RouterLink>
 
-      <button class="submit" type="submit">🔍</button>
+      <button class="bg-slate-700 rounded-r-lg focus:bg-blue-900" type="submit">
+        🔍
+      </button>
       <div
         v-if="searchList.length != 0 && searchText.length != 0"
         v-for="search in searchList"
@@ -105,56 +107,60 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
         </RouterLink>
       </div>
     </form>
-    <div v-if="movieList.length != 0" class="sort-by">
-      <button @click="handleShowAll" class="all">🍿 All</button>
-      <button @click="handleShowMovies" class="movies">🎬 Movies</button>
-      <button @click="handleShowSeries" class="series">🎞️ Series</button>
-      <button @click="handleShowGames" class="games">🎮 Games</button>
+    <div v-if="movieList.length != 0" class="flex p-4 justify-center">
+      <button
+        @click="handleShowAll"
+        class="text-slate-50 mr-4 bg-orange-400 rounded-xl p-2 border-solid border-{2} border-orange-400 focus:border-red-800"
+      >
+        🍿 All
+      </button>
+      <button
+        @click="handleShowMovies"
+        class="text-slate-50 mr-4 bg-red-600 rounded-xl p-2 border-solid border-{2} border-red-600 focus:border-orange-400"
+      >
+        🎬 Movies
+      </button>
+      <button
+        @click="handleShowSeries"
+        class="text-slate-50 mr-4 bg-violet-800 rounded-xl p-2 border-solid border-{2} border-violet-800 focus:border-red-800"
+      >
+        🎞️ Series
+      </button>
+      <button
+        @click="handleShowGames"
+        class="text-slate-50 mr-4 bg-purple-800 rounded-xl p-2 border-solid border-{2} border-purple-800 focus:border-red-800"
+      >
+        🎮 Games
+      </button>
     </div>
     <MovieCard v-if="showAll" :movie-list="movieList" />
     <MovieCard
       v-if="showMovies"
-      :movie-list="movieList.filter((movie) => (movie.Type === 'movie'))"
+      :movie-list="movieList.filter((movie) => movie.Type === 'movie')"
     />
     <MovieCard
       v-if="showSeries"
-      :movie-list="movieList.filter((movie) => (movie.Type === 'series'))"
+      :movie-list="movieList.filter((movie) => movie.Type === 'series')"
     />
-    <MovieCard v-if="showGames" :movie-list="movieList.filter((movie) => (movie.Type === 'game'))" />
+    <MovieCard
+      v-if="showGames"
+      :movie-list="movieList.filter((movie) => movie.Type === 'game')"
+    />
 
-    <div v-if="searchText.length === 0" class="featured-card">
-      <img class="featured-image" src="@/assets/search.svg" alt="an svg" />
+    <div
+      v-if="searchText.length === 0"
+      class="h-auto w-full relative flex justify-center mt40"
+    >
+      <img class="w-1/2 p-4" src="@/assets/search.svg" alt="an svg" />
     </div>
   </div>
 </template>
 <style>
-.home {
-  width: 100vw;
-}
-
 a {
   text-decoration: none;
 }
-svg {
-  width: 100%;
-  height: 10em;
-}
-.featured-card {
-  height: auto;
-  width: 100%;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin-top: 10em;
-}
-.featured-image {
-  width: 50%;
-  padding: 1em;
-}
 
 form {
-  padding: 1em;
-  width: 100vw;
   display: grid;
   grid-template-columns: 3fr 1fr;
   justify-content: space-between;
@@ -172,33 +178,11 @@ input::placeholder {
   color: grey;
 }
 
-.search-box {
-  font-size: 1em;
-  padding: 1em;
-  color: #fff;
-  font-weight: 800;
-
-  border-radius: 12px 0 0 12px;
-  background-color: #120e43;
-}
-
-.submit {
-  background-color: #242b2e;
-
-  height: auto;
-  text-transform: uppercase;
-  border-radius: 0 12px 12px 0;
-
-  font-size: 1em;
-}
 button {
   text-decoration: none;
   appearance: none;
   border: none;
   box-sizing: content-box;
-}
-.submit:focus {
-  background-color: #3c3c3b;
 }
 
 .featured-text {
@@ -220,57 +204,5 @@ button {
   margin-top: 0.5em;
   padding: 1em;
   background-color: #120e43;
-}
-.sort-by {
-  display: flex;
-  padding: 1em;
-  justify-content: center;
-}
-.all {
-  color: #fff;
-  margin-right: 1em;
-  background-color: #e07c24;
-  border-radius: 12px;
-  padding: 0.5em;
-  border: solid 2px #e07c24;
-}
-.all:focus {
-  border: solid 2px red;
-}
-.movies {
-  color: #fff;
-
-  margin-right: 1em;
-  background-color: #d82e2f;
-  border-radius: 12px;
-  padding: 0.5em;
-  border: solid 2px #d82e2f;
-}
-.movies:focus {
-  border: 2px solid #e07c24;
-}
-.series {
-  color: #fff;
-
-  margin-right: 1em;
-  background-color: #5a20cb;
-  border-radius: 12px;
-  padding: 0.5em;
-  border: solid 2px #5a20cb;
-}
-.series:focus {
-  border: 2px solid #bf3312;
-}
-.games {
-  color: #fff;
-
-  margin-right: 1em;
-  background-color: #8d3daf;
-  border-radius: 12px;
-  padding: 0.5em;
-  border: solid 2px #8d3daf;
-}
-.games:focus {
-  border: 2px solid #bf3312;
 }
 </style>
