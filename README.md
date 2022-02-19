@@ -2,6 +2,6 @@
 
 # FindMoovy Refactored-Two
 
-This branch is the refactored and improved version of the `main` branch with the vanilla css rewritten with tailwind css.
+This branch is the refactored and improved version of the `main` branch with the vanilla css rewritten with [`tailwindcss`](https://tailwindcss.com/).
 
 Link for `refactored-two`: [FindMoovy - Two](https://twofindmoovy.netlify.app/)
