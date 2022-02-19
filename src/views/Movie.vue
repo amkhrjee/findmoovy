@@ -37,168 +37,72 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <div class="movie">
-    <h2 style="color: #fff">{{ movie.Title }}</h2>
-    <h3>Number of Seasons: {{ movie.totalSeasons }}</h3>
-    <img :src="movie.Poster" />
-    <div class="container">
-      <div class="year">
-        <h3>{{ movie.Year }}</h3>
+  <div class="p-4 text-center">
+    <div class="flex flex-col justify-center items-center">
+      <h2 class="font-bold text-xl mb-4" style="color: #fff">{{ movie.Title }}</h2>
+      <img class="rounded-xl w-2/3" :src="movie.Poster" />
+    </div>
+    <div
+      class="mt-6 grid grid-cols-2 gap-2 p-4 bg-white items-center rounded-lg bg-gradient-to-b from-black to-blue-900"
+    >
+      <div class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.Year }}</h3>
         <p>Year</p>
       </div>
-      <div class="rating">
-        <h3>{{ movie.Rated }}</h3>
+      <div class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.Rated }}</h3>
         <p>Rated</p>
       </div>
-      <div class="genre">
-        <h3>{{ movie.Genre }}</h3>
+      <div class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.Genre }}</h3>
         <p>Genre</p>
       </div>
-      <div class="imdbRating">
-        <h3>{{ movie.imdbRating }}</h3>
+      <div class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.imdbRating }}</h3>
         <p>IMDB Rating</p>
       </div>
-      <div v-if="movie.Type == 'series'" class="seasons">
-        <h3>{{ movie.totalSeasons }}</h3>
+      <div v-if="movie.Type == 'series'" class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.totalSeasons }}</h3>
         <p>Total Seasons</p>
       </div>
-      <div v-if="movie.Type == 'movie'" class="runtime">
-        <h3>{{ movie.Runtime }}</h3>
+      <div v-if="movie.Type == 'movie'" class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.Runtime }}</h3>
         <p>Runtime</p>
       </div>
-      <div class="language">
-        <h3>{{ movie.Language }}</h3>
+      <div class="bg-blue-600 text-slate-50 p-4 rounded-lg">
+        <h3 class="font-semibold">{{ movie.Language }}</h3>
         <p>Language</p>
       </div>
     </div>
-    <div class="plot">
-      <h3>🗒️What's the plot?</h3>
+    <div class="text-slate-50 text-left p-4">
+      <h3 class="pb-4 font-bold text-xl">🗒️What's the plot?</h3>
       <p v-if="!readMore">
         {{ movie.Plot?.length < 200 ? movie.Plot : movie.Plot?.slice(0, 200) }}
         <span @click="isReadMore" style="color: #5da3fa">read more...</span>
       </p>
       <p v-if="readMore">{{ movie.Plot }}</p>
     </div>
-    <div class="awards">
-      <h3>🎗️ Awards and Nominations</h3>
+    <div class="text-slate-50 text-left p-4">
+      <h3 class="pb-4 font-bold text-xl">🎗️ Awards and Nominations</h3>
       <p>{{ movie.Awards }}</p>
     </div>
-    <div class="actors">
-      <h3>🧑🏻‍🎤 Lead Actors</h3>
+    <div class="text-slate-50 text-left p-4">
+      <h3 class="pb-4 font-bold text-xl">🧑🏻‍🎤 Lead Actors</h3>
       <p>{{ movie.Actors }}</p>
     </div>
-    <div class="share-copy">
-      <button @click="shareLink" class="share">🔗 Share</button>
-      <button @click="copyToClipboard" class="copy">
+    <div class="flex justify-around">
+      <button
+        @click="shareLink"
+        class="p-4 rounded-lg bg-purple-700 font-bold w-1/2 text-slate-50"
+      >
+        🔗 Share
+      </button>
+      <button
+        @click="copyToClipboard"
+        class="p-4 rounded-lg bg-blue-500 font-bold text-slate-50 focus:bg-red-400"
+      >
         {{ copied ? "✅ Copied" : "📋 Copy" }}
       </button>
     </div>
   </div>
 </template>
-<style>
-.movie {
-  padding: 1em;
-  text-align: center;
-}
-.movie h1 {
-  color: #f5d547;
-}
-.movie img {
-  border-radius: 12px;
-}
-.container {
-  margin-top: 1.5em;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5em;
-  padding: 1em;
-  color: #fff;
-  align-items: center;
-  background-image: linear-gradient(#000, #120e43);
-  border-radius: 12px;
-}
-
-.year {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.rating {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.genre {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.runtime {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.imdbRating {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.seasons {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.language {
-  background-color: #03203c;
-  padding: 1em;
-  border-radius: 12px;
-}
-.plot {
-  color: #fff;
-  text-align: left;
-  padding: 1em;
-}
-.plot h3 {
-  padding-bottom: 1em;
-}
-
-.awards {
-  color: #fff;
-  text-align: left;
-  padding: 1em;
-}
-.awards h3 {
-  padding-bottom: 1em;
-}
-
-.actors {
-  color: #fff;
-  text-align: left;
-  padding: 1em;
-}
-.actors h3 {
-  padding-bottom: 1em;
-}
-.share-copy {
-  display: flex;
-  justify-content: space-around;
-}
-.share {
-  padding: 1em;
-  border-radius: 12px;
-  background-color: #5a20cb;
-  color: #fff;
-  font-weight: 600;
-  width: 50%;
-}
-.copy {
-  padding: 1em;
-  border-radius: 12px;
-  background-color: #5da3fa;
-  color: #fff;
-  font-weight: 600;
-}
-.copy:focus {
-  background-color: #ff6666;
-}
-</style>

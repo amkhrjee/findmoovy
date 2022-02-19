@@ -85,7 +85,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
     <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
       <RouterLink to="#search-box">
         <input
-          class="text-xs p-4 text-slate-50 text-bold rounded-l-lg bg-slate-900"
+          class="text-xs p-4 text-slate-50 font-bold rounded-l-lg bg-slate-900"
           id="search-box"
           v-model="searchText"
           type="text"
@@ -94,7 +94,11 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
         />
       </RouterLink>
 
-      <button class="bg-slate-700 rounded-r-lg focus:bg-blue-900" type="submit">
+      <button
+        @click="navigator.vibrate(100)"
+        class="bg-slate-700 rounded-r-lg focus:bg-blue-900"
+        type="submit"
+      >
         🔍
       </button>
       <div
