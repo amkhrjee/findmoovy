@@ -3,9 +3,9 @@ import { RouterLink, RouterView } from "vue-router";
 </script>
 
 <template>
-  <header class="flex justify-between items-center h-16 bg-blue-900 font-bold">
+  <header class="flex justify-between items-center h-16 bg-navbar font-bold">
     <RouterLink to="/">
-      <h2 class="text-red-400 text-lg ml-4">FindMoovy</h2>
+      <h2 class="text-title text-xl ml-4">FindMoovy</h2>
     </RouterLink>
     <a
       href="https://github.com/amkhrjee/findmoovy"
@@ -20,7 +20,7 @@ import { RouterLink, RouterView } from "vue-router";
     <main class="h-auto">
       <RouterView />
     </main>
-    <footer class="relative bottom-0 text-slate-400 flex justify-center">
+    <footer class="relative bottom-0 text-grey flex justify-center">
       <span class="text-sm p-4">
         Made with
         <a
