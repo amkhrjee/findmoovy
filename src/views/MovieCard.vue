@@ -9,7 +9,7 @@ defineProps({
   <div class="movie-list">
     <ul class="p-4 grid grid-cols-2 gap-4">
       <li
-        class="bg-slate-700 rounded-xl relative h-auto overflow-hidden"
+        class="bg-moviecard rounded-xl relative h-auto overflow-hidden"
         v-for="movie in movieList"
         :key="movie.imdbID"
       >
@@ -25,7 +25,7 @@ defineProps({
         >
           {{ movie.Type }}
         </div>
-        <h3 class="p-4 text-slate-300">{{ movie.Title }}</h3>
+        <h3 class="p-4 text-movieTitle font-bold text-lg">{{ movie.Title }}</h3>
       </li>
     </ul>
   </div>

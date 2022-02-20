@@ -85,7 +85,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
     <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
       <RouterLink to="#search-box">
         <input
-          class="text-xs p-4 text-slate-50 font-bold rounded-l-lg bg-slate-900"
+          class="text-xs p-4 text-white font-bold rounded-l-lg bg-searchbar"
           id="search-box"
           v-model="searchText"
           type="text"
@@ -96,7 +96,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
 
       <button
         @click="navigator.vibrate(100)"
-        class="bg-slate-700 rounded-r-lg focus:bg-blue-900"
+        class="bg-searchbtn rounded-r-lg focus:bg-blue-900"
         type="submit"
       >
         🔍
@@ -114,25 +114,25 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
     <div v-if="movieList.length != 0" class="flex p-4 justify-center">
       <button
         @click="handleShowAll"
-        class="text-slate-50 mr-4 bg-orange-400 rounded-xl p-2 border-solid border-{2} border-orange-400 focus:border-red-800"
+        class="text-white mr-4 bg-all rounded-xl p-2 border-solid border-{2} border-all focus:border-movies"
       >
         🍿 All
       </button>
       <button
         @click="handleShowMovies"
-        class="text-slate-50 mr-4 bg-red-600 rounded-xl p-2 border-solid border-{2} border-red-600 focus:border-orange-400"
+        class="text-white mr-4 bg-movies rounded-xl p-2 border-solid border-{2} border-movies focus:border-all"
       >
         🎬 Movies
       </button>
       <button
         @click="handleShowSeries"
-        class="text-slate-50 mr-4 bg-violet-800 rounded-xl p-2 border-solid border-{2} border-violet-800 focus:border-red-800"
+        class="text-white mr-4 bg-series rounded-xl p-2 border-solid border-{2} border-series focus:border-movies"
       >
         🎞️ Series
       </button>
       <button
         @click="handleShowGames"
-        class="text-slate-50 mr-4 bg-purple-800 rounded-xl p-2 border-solid border-{2} border-purple-800 focus:border-red-800"
+        class="text-white mr-4 bg-games rounded-xl p-2 border-solid border-{2} border-games focus:border-all"
       >
         🎮 Games
       </button>
