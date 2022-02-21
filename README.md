@@ -1,7 +1,7 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a969f4b6-4bad-49bd-ba1b-12fdfbbf263b/deploy-status)](https://app.netlify.com/sites/twofindmoovy/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b0aa61c0-9ce8-49eb-8170-140b3b048532/deploy-status)](https://app.netlify.com/sites/threefindmoovy/deploys)
 
 # FindMoovy Refactored-Two
 
-This branch is the refactored and improved version of the `main` branch with the vanilla css rewritten with [`tailwindcss`](https://tailwindcss.com/).
+The goal of this branch is to extend the capabilities of app beyond just fetching data.
 
-Link for `refactored-two`: [FindMoovy - Two](https://twofindmoovy.netlify.app/)
+Link for `refactored-two`: [FindMoovy - Three](https://threefindmoovy.netlify.app/)
