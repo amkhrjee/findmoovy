@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
+
 import env from "@/env.js";
 const searchText = ref("");
 const movieList = ref([]);
@@ -152,7 +153,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
     />
 
     <div
-      v-if="searchText.length === 0"
+      v-if="searchText.length === 0 && movieList.length == 0"
       class="h-auto w-full relative flex justify-center mt40"
     >
       <img class="w-1/2 p-4" src="@/assets/search.svg" alt="an svg" />

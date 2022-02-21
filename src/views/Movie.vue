@@ -37,8 +37,8 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <div class="p-4 text-center">
-    <div class="flex flex-col justify-center items-center">
+  <div class="p-4 text-center md:grid md:grid-cols-2">
+    <div class="flex flex-col justify-center items-center md:sticky">
       <h2 class="font-bold text-xl mb-4" style="color: #fff">{{ movie.Title }}</h2>
       <img class="rounded-xl w-2/3" :src="movie.Poster" />
     </div>
@@ -74,35 +74,37 @@ onBeforeMount(() => {
         <p>Language</p>
       </div>
     </div>
-    <div class="text-white text-left p-4">
-      <h3 class="pb-4 font-bold text-xl">🗒️What's the plot?</h3>
-      <p v-if="!readMore">
-        {{ movie.Plot?.length < 200 ? movie.Plot : movie.Plot?.slice(0, 200) }}
-        <span @click="isReadMore" style="color: #5da3fa">read more...</span>
-      </p>
-      <p v-if="readMore">{{ movie.Plot }}</p>
-    </div>
-    <div class="text-white text-left p-4">
-      <h3 class="pb-4 font-bold text-xl">🎗️ Awards and Nominations</h3>
-      <p>{{ movie.Awards }}</p>
-    </div>
-    <div class="text-white text-left p-4">
-      <h3 class="pb-4 font-bold text-xl">🧑🏻‍🎤 Lead Actors</h3>
-      <p>{{ movie.Actors }}</p>
-    </div>
-    <div class="flex justify-around">
-      <button
-        @click="shareLink"
-        class="p-4 rounded-lg bg-share font-bold w-1/2 text-white"
-      >
-        🔗 Share
-      </button>
-      <button
-        @click="copyToClipboard"
-        class="p-4 rounded-lg bg-copy font-bold text-white focus:bg-all"
-      >
-        {{ copied ? "✅ Copied" : "📋 Copy" }}
-      </button>
+    <div class="md:col-span-2 md:mt-4">
+      <div class="text-white text-left p-4">
+        <h3 class="pb-4 font-bold text-xl">🗒️What's the plot?</h3>
+        <p v-if="!readMore">
+          {{ movie.Plot?.length < 200 ? movie.Plot : movie.Plot?.slice(0, 200) }}
+          <span @click="isReadMore" style="color: #5da3fa">read more...</span>
+        </p>
+        <p v-if="readMore">{{ movie.Plot }}</p>
+      </div>
+      <div class="text-white text-left p-4">
+        <h3 class="pb-4 font-bold text-xl">🎗️ Awards and Nominations</h3>
+        <p>{{ movie.Awards }}</p>
+      </div>
+      <div class="text-white text-left p-4">
+        <h3 class="pb-4 font-bold text-xl">🧑🏻‍🎤 Lead Actors</h3>
+        <p>{{ movie.Actors }}</p>
+      </div>
+      <div class="flex justify-around md:mt-4">
+        <button
+          @click="shareLink"
+          class="p-4 rounded-lg bg-share font-bold w-1/2 text-white"
+        >
+          🔗 Share
+        </button>
+        <button
+          @click="copyToClipboard"
+          class="p-4 rounded-lg bg-copy font-bold text-white focus:bg-all"
+        >
+          {{ copied ? "✅ Copied" : "📋 Copy" }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
