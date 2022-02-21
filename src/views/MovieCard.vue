@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from "vue";
-import { RouterLink } from "vue-router";
 defineProps({
   movieList: Array,
 });
@@ -21,7 +19,7 @@ defineProps({
           />
         </RouterLink>
         <div
-          class="absolute left-0 top-4 text-white bg-black opacity-60 font-bold p-2 rounded-r-lg backdrop-blur-lg capitalize"
+          class="absolute left-0 top-4 text-white bg-black opacity-60 font-bold p-2 rounded-r-lg backdrop-blur-xl capitalize"
         >
           {{ movie.Type }}
         </div>

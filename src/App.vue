@@ -7,14 +7,19 @@ import { RouterLink, RouterView } from "vue-router";
     <RouterLink to="/">
       <h2 class="text-title text-xl ml-4">FindMoovy</h2>
     </RouterLink>
-    <a
-      href="https://github.com/amkhrjee/findmoovy"
-      alt="Link to github repo"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img class="w-6 mr-4" src="./assets/ghlogo.png" alt="github logo" />
-    </a>
+    <div class="flex items-center justify-between">
+      <RouterLink to="/watchlist">
+        <div class="text-white font-semibold bg-searchbar rounded-xl p-2 mr-4">🔖</div>
+      </RouterLink>
+      <a
+        href="https://github.com/amkhrjee/findmoovy"
+        alt="Link to github repo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img class="w-6 mr-4" src="./assets/ghlogo.png" alt="github logo" />
+      </a>
+    </div>
   </header>
   <div class="h-screen flex justify-between flex-col">
     <main class="h-auto">

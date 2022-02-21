@@ -7,6 +7,7 @@ const copied = ref(false);
 const movie = ref({});
 const route = useRoute();
 const readMore = ref(false);
+const addedToWatchlist = ref(false);
 const link = ref({
   title: "FindMoovy" + movie.value.Title,
   text: "Check out this movie!",
@@ -27,6 +28,11 @@ const copyToClipboard = () => {
 };
 const isReadMore = () => {
   readMore.value = !readMore.value;
+};
+const addWatchlist = () => {
+  addedToWatchlist.value = true;
+  window.localStorage.setItem(movie.value.Title, JSON.stringify(movie.value));
+  navigator.vibrate(50);
 };
 onBeforeMount(() => {
   fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=${env.apiKey}&plot=full`)
@@ -90,6 +96,14 @@ onBeforeMount(() => {
       <div class="text-white text-left p-4">
         <h3 class="pb-4 font-bold text-xl">🧑🏻‍🎤 Lead Actors</h3>
         <p>{{ movie.Actors }}</p>
+      </div>
+      <div class="p-4">
+        <button
+          @click="addWatchlist"
+          class="p-4 rounded-lg w-5/6 bg-games font-bold text-white"
+        >
+          {{ addedToWatchlist ? "✅ Added to watchlist" : "🔖 Add to watchlist" }}
+        </button>
       </div>
       <div class="flex justify-around md:mt-4">
         <button
