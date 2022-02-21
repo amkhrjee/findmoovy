@@ -1,6 +1,6 @@
 {
-  "name": "movieapp",
-  "homepage": "https://amkhrjee.github.io/vuemovieapp/",
+  "name": "findmoovy",
+  "homepage": "https://threefindmoovy.netlify.app/",
   "version": "0.0.3",
   "scripts": {
     "dev": "vite",
