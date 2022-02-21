@@ -1,8 +1,13 @@
 <script setup>
-alert(
-  window.localStorage.getItem("Pirates of the Caribbean: The Curse of the Black Pearl")
-);
+import { ref } from "vue";
+import MovieCard from "./MovieCard.vue";
+
+const movieList = ref([]);
+Object.keys(window.localStorage).forEach((key) => {
+  movieList.value.push(JSON.parse(window.localStorage.getItem(key)));
+});
 </script>
 <template>
-  <h1 class="text-all">hello world</h1>
+  <div class="font-bold text-xl text-white text-center p-4">🔖 Your Watchlist</div>
+  <MovieCard :movie-list="movieList" />
 </template>
