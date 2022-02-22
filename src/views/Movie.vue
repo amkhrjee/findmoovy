@@ -21,6 +21,19 @@ const shareLink = () => {
       .catch((err) => console.log(err));
   }
 };
+const checkLocalStorage = (id) => {
+  let match = false;
+  Object.keys(window.localStorage).forEach((key) => {
+    if (id === key) {
+      match = true;
+    }
+  });
+  if (match || addedToWatchlist.value) {
+    return true;
+  } else {
+    return false;
+  }
+};
 const copyToClipboard = () => {
   navigator.clipboard.writeText(link.value.url);
   navigator.vibrate(100);
@@ -31,7 +44,7 @@ const isReadMore = () => {
 };
 const addWatchlist = () => {
   addedToWatchlist.value = true;
-  window.localStorage.setItem(movie.value.Title, JSON.stringify(movie.value));
+  window.localStorage.setItem(movie.value.imdbID, JSON.stringify(movie.value));
   navigator.vibrate(50);
 };
 onBeforeMount(() => {
@@ -39,6 +52,7 @@ onBeforeMount(() => {
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;
+      console.log(data);
     });
 });
 </script>
@@ -102,7 +116,11 @@ onBeforeMount(() => {
           @click="addWatchlist"
           class="p-4 rounded-lg w-5/6 bg-games font-bold text-white"
         >
-          {{ addedToWatchlist ? "✅ Added to watchlist" : "🔖 Add to watchlist" }}
+          {{
+            checkLocalStorage(movie.imdbID)
+              ? "✅ Added to watchlist"
+              : "🔖 Add to watchlist"
+          }}
         </button>
       </div>
       <div class="flex justify-around md:mt-4">
