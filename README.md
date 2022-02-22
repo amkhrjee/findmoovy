@@ -4,4 +4,4 @@
 
 The goal of this branch is to extend the capabilities of app beyond just fetching data.
 
-Link for `refactored-two`: [FindMoovy - Three](https://threefindmoovy.netlify.app/)
+Link for `refactored-three`: [FindMoovy - Three](https://threefindmoovy.netlify.app/)

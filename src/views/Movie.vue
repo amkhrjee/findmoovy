@@ -52,7 +52,6 @@ onBeforeMount(() => {
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;
-      console.log(data);
     });
 });
 </script>

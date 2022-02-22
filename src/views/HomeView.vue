@@ -15,7 +15,7 @@ const showMovies = ref(false);
 const showSeries = ref(false);
 const showGames = ref(false);
 const count = ref(0);
-const funRun = ref(false);
+const showRecent = ref(false);
 
 const update = debounce((e) => {
   searchTerm.value = e.target.value;
@@ -51,7 +51,11 @@ const recentSearches = () => {
       recentSearhesList.value.push(window.sessionStorage.getItem(key));
     }
   });
+  showRecent.value = true;
 };
+// document.getElementById("searchbox").addEventListener("blur", () => {
+//   showRecent.value = false;
+// });
 
 const search = () => {
   if (searchText.value != "") {
@@ -92,20 +96,24 @@ const handleShowGames = () => {
   showMovies.value = false;
   showSeries.value = false;
 };
+const clickOutside = () => {
+  showRecent.value = false;
+};
 </script>
 
 <template>
   <div class="w-screen">
     <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
-      <RouterLink to="#search-box">
+      <RouterLink to="#searchbox">
         <input
           class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg dark:bg-searchbar dark:border-none"
-          id="search-box"
+          id="searchbox"
           v-model="searchText"
           type="text"
           placeholder="Looking for something?"
           @input="update"
           @click="recentSearches"
+          v-click-outside="clickOutside"
         />
       </RouterLink>
 
@@ -117,11 +125,13 @@ const handleShowGames = () => {
         🔍
       </button>
       <div
-        v-for="recentSearch in recentSearhesList"
+        v-if="showRecent"
+        v-for="recentSearch in recentSearhesList.reverse()"
         class="search-suggest"
-        id="recentSearch"
       >
-        <p style="color: #fff">{{ recentSearch }} ⌚</p>
+        <p @click="searchText = recentSearch" style="color: #fff">
+          {{ recentSearch }} ⌚
+        </p>
       </div>
       <div
         v-if="searchList.length != 0 && searchText.length != 0"
