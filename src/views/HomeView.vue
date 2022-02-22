@@ -9,11 +9,13 @@ const searchText = ref("");
 const movieList = ref([]);
 const searchTerm = ref("");
 const searchList = ref([]);
-
+const recentSearhesList = ref([]);
 const showAll = ref(true);
 const showMovies = ref(false);
 const showSeries = ref(false);
 const showGames = ref(false);
+const count = ref(0);
+const funRun = ref(false);
 
 const update = debounce((e) => {
   searchTerm.value = e.target.value;
@@ -35,6 +37,21 @@ const searchSuggest = () => {
       });
   }
 };
+const existsInSessionStorage = (key) => {
+  if (recentSearhesList.value.includes(window.sessionStorage.getItem(key))) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const recentSearches = () => {
+  Object.keys(window.sessionStorage).forEach((key) => {
+    if (key.length <= 3 && !existsInSessionStorage(key)) {
+      recentSearhesList.value.push(window.sessionStorage.getItem(key));
+    }
+  });
+};
 
 const search = () => {
   if (searchText.value != "") {
@@ -44,7 +61,9 @@ const search = () => {
       .then((res) => res.json())
       .then((data) => {
         movieList.value = data.Search;
+        window.sessionStorage.setItem(count.value, searchText.value);
         searchText.value = "";
+        count.value += 1;
       });
   }
 };
@@ -73,12 +92,6 @@ const handleShowGames = () => {
   showMovies.value = false;
   showSeries.value = false;
 };
-
-//featured movie
-const featuredMovie = ref({});
-fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
-  .then((res) => res.json())
-  .then((data) => (featuredMovie.value = data));
 </script>
 
 <template>
@@ -92,6 +105,7 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
           type="text"
           placeholder="Looking for something?"
           @input="update"
+          @click="recentSearches"
         />
       </RouterLink>
 
@@ -102,6 +116,9 @@ fetch(`https://www.omdbapi.com/?i=tt5834426&apikey=${env.apiKey}`)
       >
         🔍
       </button>
+      <div v-for="recentSearch in recentSearhesList" class="search-suggest">
+        <p style="color: #fff">{{ recentSearch }} ⌚</p>
+      </div>
       <div
         v-if="searchList.length != 0 && searchText.length != 0"
         v-for="search in searchList"
