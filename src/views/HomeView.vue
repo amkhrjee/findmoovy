@@ -117,7 +117,7 @@ const handleShowGames = () => {
         🔍
       </button>
       <div
-        v-if="document.querySelector('#recentSearch').hasFocus"
+        v-if="showRecents"
         v-for="recentSearch in recentSearhesList"
         class="search-suggest"
         id="recentSearch"
