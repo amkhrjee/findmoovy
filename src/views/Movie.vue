@@ -34,6 +34,10 @@ const checkLocalStorage = (id) => {
     return false;
   }
 };
+const removeWatchlist = () => {
+  window.localStorage.removeItem(movie.value.imdbID);
+  addedToWatchlist.value = false;
+};
 const copyToClipboard = () => {
   navigator.clipboard.writeText(link.value.url);
   navigator.vibrate(100);
@@ -62,7 +66,7 @@ onBeforeMount(() => {
       <img class="rounded-xl w-2/3" :src="movie.Poster" />
     </div>
     <div
-      class="mt-6 grid grid-cols-2 gap-2 p-4 items-center rounded-lg bg-grey dark:bg-gradient-to-b from-black to-gradblue"
+      class="mt-6 grid grid-cols-2 gap-2 p-4 items-center rounded-lg drop-shadow-lg dark:bg-gradient-to-b from-black to-gradblue"
     >
       <div class="bg-detail text-white p-4 rounded-lg">
         <h3 class="font-semibold">{{ movie.Year }}</h3>
@@ -112,14 +116,18 @@ onBeforeMount(() => {
       </div>
       <div class="p-4">
         <button
+          v-if="checkLocalStorage(movie.imdbID)"
+          @click="removeWatchlist"
+          class="p-4 rounded-lg w-5/6 bg-movies font-bold text-white focus:bg-all"
+        >
+          🗑️ Remove from watchlist
+        </button>
+        <button
+          v-else
           @click="addWatchlist"
           class="p-4 rounded-lg w-5/6 bg-games font-bold text-white"
         >
-          {{
-            checkLocalStorage(movie.imdbID)
-              ? "✅ Added to watchlist"
-              : "🔖 Add to watchlist"
-          }}
+          🔖 Add to watchlist
         </button>
       </div>
       <div class="flex justify-around md:mt-4">
