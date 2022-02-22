@@ -127,7 +127,7 @@ const clickOutside = () => {
       <div
         v-if="showRecent"
         v-for="recentSearch in recentSearhesList.reverse()"
-        class="search-suggest"
+        class="search-suggest drop-shadow-lg"
       >
         <p @click="searchText = recentSearch" style="color: #fff">
           {{ recentSearch }} ⌚

@@ -7,7 +7,7 @@ defineProps({
   <div class="movie-list">
     <ul class="p-4 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
       <li
-        class="bg-moviecard rounded-xl relative h-auto overflow-hidden"
+        class="bg-moviecard rounded-xl relative h-auto overflow-hidden drop-shadow-lg"
         v-for="movie in movieList"
         :key="movie.imdbID"
       >
