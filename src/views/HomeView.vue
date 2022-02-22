@@ -99,7 +99,7 @@ const handleShowGames = () => {
     <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
       <RouterLink to="#search-box">
         <input
-          class="text-xs p-4 text-white font-bold rounded-l-lg bg-searchbar"
+          class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg dark:bg-searchbar dark:border-none"
           id="search-box"
           v-model="searchText"
           type="text"
@@ -116,7 +116,12 @@ const handleShowGames = () => {
       >
         🔍
       </button>
-      <div v-for="recentSearch in recentSearhesList" class="search-suggest">
+      <div
+        v-if="document.querySelector('#recentSearch').hasFocus"
+        v-for="recentSearch in recentSearhesList"
+        class="search-suggest"
+        id="recentSearch"
+      >
         <p style="color: #fff">{{ recentSearch }} ⌚</p>
       </div>
       <div
