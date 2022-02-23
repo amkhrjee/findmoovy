@@ -2,4 +2,8 @@
 
 # 🎬 FindMoovy
 
+FindMoovy allows you search for your favourite movies, TV Shows and even Video Games, and get all sorts of accurate information on them.
+
+You can add/remove the movies/shows you want to watch in a watchlist without the need for creating any account.
+
 Link for live website: [FindMoovy](https://findmoovy.netlify.app/)

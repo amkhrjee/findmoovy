@@ -43,7 +43,7 @@ const darkMode = ref(true);
         <main class="h-auto">
           <RouterView />
         </main>
-        <footer class="relative bottom-0 text-grey flex justify-center">
+        <footer class="relative bottom-0 text-grey flex justify-center dark:bg-black">
           <span class="text-sm p-4">
             Made with
             <a
