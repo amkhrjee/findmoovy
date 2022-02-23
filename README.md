@@ -1,7 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b0aa61c0-9ce8-49eb-8170-140b3b048532/deploy-status)](https://app.netlify.com/sites/threefindmoovy/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fd2ced65-889e-479a-8d46-b5e668811428/deploy-status)](https://app.netlify.com/sites/findmoovy/deploys)
 
-# FindMoovy Refactored-Three
+# 🎬 FindMoovy
 
-The goal of this branch is to extend the capabilities of app beyond just fetching data.
-
-Link for `refactored-three`: [FindMoovy - Three](https://threefindmoovy.netlify.app/)
+Link for live website: [FindMoovy](https://findmoovy.netlify.app/)
