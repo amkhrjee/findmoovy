@@ -20,7 +20,7 @@ const darkMode = ref(true);
                 <!-- input -->
                 <input type="checkbox" id="toggle" v-model="darkMode" class="sr-only" />
                 <!-- line -->
-                <div class="block bg-games w-14 h-8 rounded-full"></div>
+                <div class="block bg-title w-14 h-8 rounded-full"></div>
                 <!-- dot -->
                 <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
               </div>
