@@ -8,11 +8,13 @@ const movie = ref({});
 const route = useRoute();
 const readMore = ref(false);
 const addedToWatchlist = ref(false);
+const removedFromWatchlist = ref(false);
 const link = ref({
   title: "FindMoovy" + movie.value.Title,
   text: "Check out this movie!",
   url: `https://www.imdb.com/title/${route.params.id}`,
 });
+
 const shareLink = () => {
   if (navigator.share) {
     navigator
@@ -37,6 +39,7 @@ const checkLocalStorage = (id) => {
 const removeWatchlist = () => {
   window.localStorage.removeItem(movie.value.imdbID);
   addedToWatchlist.value = false;
+  removedFromWatchlist.value = true;
 };
 const copyToClipboard = () => {
   navigator.clipboard.writeText(link.value.url);
@@ -102,7 +105,7 @@ onBeforeMount(() => {
         <h3 class="pb-4 font-bold text-xl">🗒️What's the plot?</h3>
         <p v-if="!readMore">
           {{ movie.Plot?.length < 200 ? movie.Plot : movie.Plot?.slice(0, 200) }}
-          <span @click="isReadMore" style="color: #5da3fa">read more...</span>
+          <span @click="isReadMore" style="color: #5da3fa">...read more</span>
         </p>
         <p v-if="readMore">{{ movie.Plot }}</p>
       </div>
