@@ -102,7 +102,7 @@ const clickOutside = () => {
 </script>
 
 <template>
-  <div class="w-screen">
+  <div class="w-screen bg-white dark:bg-black">
     <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
       <RouterLink to="#searchbox">
         <input
@@ -121,17 +121,13 @@ const clickOutside = () => {
         @click="navigator.vibrate(100)"
         class="bg-searchbtn rounded-r-lg focus:bg-blue-900"
         type="submit"
-      >
-        🔍
-      </button>
+      >🔍</button>
       <div
         v-if="showRecent"
         v-for="recentSearch in recentSearhesList.reverse()"
         class="search-suggest drop-shadow-lg"
       >
-        <p @click="searchText = recentSearch" style="color: #fff">
-          {{ recentSearch }} ⌚
-        </p>
+        <p @click="searchText = recentSearch" style="color: #fff">{{ recentSearch }} ⌚</p>
       </div>
       <div
         v-if="searchList.length != 0 && searchText.length != 0"
@@ -147,41 +143,27 @@ const clickOutside = () => {
       <button
         @click="handleShowAll"
         class="text-white mr-4 bg-all rounded-xl p-2 border-solid border-{2} border-all focus:border-movies"
-      >
-        🍿 All
-      </button>
+      >🍿 All</button>
       <button
         @click="handleShowMovies"
         class="text-white mr-4 bg-movies rounded-xl p-2 border-solid border-{2} border-movies focus:border-all"
-      >
-        🎬 Movies
-      </button>
+      >🎬 Movies</button>
       <button
         @click="handleShowSeries"
         class="text-white mr-4 bg-series rounded-xl p-2 border-solid border-{2} border-series focus:border-movies"
-      >
-        🎞️ Series
-      </button>
+      >🎞️ Series</button>
       <button
         @click="handleShowGames"
         class="text-white mr-4 bg-games rounded-xl p-2 border-solid border-{2} border-games focus:border-all"
-      >
-        🎮 Games
-      </button>
+      >🎮 Games</button>
     </div>
     <MovieCard v-if="showAll" :movie-list="movieList" />
-    <MovieCard
-      v-if="showMovies"
-      :movie-list="movieList.filter((movie) => movie.Type === 'movie')"
-    />
+    <MovieCard v-if="showMovies" :movie-list="movieList.filter((movie) => movie.Type === 'movie')" />
     <MovieCard
       v-if="showSeries"
       :movie-list="movieList.filter((movie) => movie.Type === 'series')"
     />
-    <MovieCard
-      v-if="showGames"
-      :movie-list="movieList.filter((movie) => movie.Type === 'game')"
-    />
+    <MovieCard v-if="showGames" :movie-list="movieList.filter((movie) => movie.Type === 'game')" />
 
     <div
       v-if="searchText.length === 0 && movieList.length == 0"
