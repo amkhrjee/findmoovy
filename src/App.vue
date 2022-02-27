@@ -28,7 +28,7 @@ const railStyle = ({ focused, checked }) => {
     <div class="bg-white dark:bg-black">
       <header class="flex justify-between items-center h-16 bg-navbar font-bold">
         <RouterLink to="/">
-          <h2 class="text-title text-xl ml-4">FindMoovy</h2>
+          <h2 class="text-title text-xl ml-4">🎬 FindMoovy</h2>
         </RouterLink>
 
         <div class="flex items-center justify-between mr-2">
