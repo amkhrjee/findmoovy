@@ -1,7 +1,26 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
+import { NSwitch, NButton } from "naive-ui";
+import { Sun, Moon, Bookmark } from "@vicons/fa";
+import { Icon } from "@vicons/utils";
 const darkMode = ref(true);
+
+const railStyle = ({ focused, checked }) => {
+  const style = {};
+  if (checked) {
+    style.background = "#d03050";
+    if (focused) {
+      style.boxShadow = "0 0 0 2px #da4163";
+    }
+  } else {
+    style.background = "#2080f0";
+    if (focused) {
+      style.boxShadow = "0 0 0 2px #2080f040";
+    }
+  }
+  return style;
+};
 </script>
 
 <template>
@@ -13,21 +32,27 @@ const darkMode = ref(true);
         </RouterLink>
 
         <div class="flex items-center justify-between mr-2">
-          <div class="flex items-center justify-center w-full">
-            <label for="toggle" class="flex items-center cursor-pointer">
-              <!-- toggle -->
-              <div class="relative">
-                <!-- input -->
-                <input type="checkbox" id="toggle" v-model="darkMode" class="sr-only" />
-                <!-- line -->
-                <div class="block bg-title w-14 h-8 rounded-full"></div>
-                <!-- dot -->
-                <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-              </div>
-            </label>
-          </div>
+          <!-- Mode toggle -->
+
+          <n-switch class="mr-4" v-model:value="darkMode" size="large" :rail-style="railStyle">
+            <template #checked-icon>
+              <Icon color="#808080">
+                <Moon />
+              </Icon>
+            </template>
+            <template #unchecked-icon>
+              <Icon color="#da4163">
+                <Sun />
+              </Icon>
+            </template>
+          </n-switch>
+          <!-- Watchlist button -->
           <RouterLink to="/watchlist">
-            <div class="text-white font-semibold bg-searchbar rounded-xl p-2 mr-4">🔖</div>
+            <n-button strong circle secondary type="error" class="mr-4">
+              <Icon>
+                <Bookmark />
+              </Icon>
+            </n-button>
           </RouterLink>
           <a
             href="https://github.com/amkhrjee/findmoovy"
@@ -63,6 +88,20 @@ const darkMode = ref(true);
 
 <style>
 *,
+::after,
+::befor *,
+::after,
+::befor *,
+::after *,
+::after,
+::befor *,
+::after,
+::befor *,
+::after *,
+::after,
+::befor *,
+::after,
+::befor *,
 ::after,
 ::before {
   margin: 0;
