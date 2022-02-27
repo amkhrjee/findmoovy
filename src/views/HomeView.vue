@@ -99,24 +99,29 @@ const handleShowGames = () => {
   showMovies.value = false;
   showSeries.value = false;
 };
-// const clickOutside = () => {
-//   showRecent.value = false;
-// };
+const clickOutside = () => {
+  showRecent.value = false;
+};
+
+const handleSpeechRecognition = () => {
+  // Configure SpeechRecognition
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+
+  recognition.start()
+  recognition.onresult = e => {
+    searchText.value = e.results[0][0].transcript
+    search()
+  }
+}
 </script>
 
 <template>
   <div class="w-screen p-4 bg-white dark:bg-black">
-    <form autocomplete="off" @submit.prevent="search" class="w-full flex justify-center">
-      <n-input-group>
-        <n-input status="error" clearable size="large" />
-        <n-button ghost color="#da4163" size="large">
-          <Icon>
-            <Search />
-          </Icon>
-        </n-button>
-      </n-input-group>
-      <!-- <input
-        class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg dark:bg-searchbar dark:border-none"
+    <form autocomplete="off" @submit.prevent="search" class="w-full">
+      <input
+        class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg border-r-0 dark:bg-searchbar dark:border-none"
         id="searchbox"
         v-model="searchText"
         type="text"
@@ -124,30 +129,33 @@ const handleShowGames = () => {
         @input="update"
         @click="recentSearches"
         v-click-outside="clickOutside"
-      />-->
-
-      <!-- <button
+      />
+      <button
+        @click="handleSpeechRecognition"
+        class="bg-white border-searchbtn border-solid border-2 border-l-0 dark:bg-searchbar dark:border-none"
+      >🎙️</button>
+      <button
         @click="navigator.vibrate(100)"
         class="bg-searchbtn rounded-r-lg focus:bg-blue-900"
         type="submit"
-      >🔍</button>-->
-      <div
-        v-if="showRecent"
-        v-for="recentSearch in recentSearhesList.reverse()"
-        class="search-suggest drop-shadow-lg"
-      >
-        <p @click="searchText = recentSearch" style="color: #fff">{{ recentSearch }} ⌚</p>
-      </div>
-      <div
-        v-if="searchList.length != 0 && searchText.length != 0"
-        v-for="search in searchList"
-        class="search-suggest"
-      >
-        <RouterLink :to="'/movies/' + search.imdbID">
-          <p style="color: #fff">{{ search.Title }} ↗️</p>
-        </RouterLink>
-      </div>
+      >🔍</button>
     </form>
+    <div
+      v-if="showRecent"
+      v-for="recentSearch in recentSearhesList.reverse()"
+      class="search-suggest drop-shadow-lg"
+    >
+      <p @click="searchText = recentSearch" style="color: #fff">{{ recentSearch }} ⌚</p>
+    </div>
+    <div
+      v-if="searchList.length != 0 && searchText.length != 0"
+      v-for="search in searchList"
+      class="search-suggest"
+    >
+      <RouterLink :to="'/movies/' + search.imdbID">
+        <p style="color: #fff">{{ search.Title }} ↗️</p>
+      </RouterLink>
+    </div>
     <div v-if="movieList.length != 0" class="flex p-4 justify-center">
       <button
         @click="handleShowAll"
@@ -192,7 +200,7 @@ form {
   grid-template-columns: 3fr 1fr;
   justify-content: space-between;
 }
-/* input {
+input {
   appearance: none;
   border: none;
   outline: none;
@@ -203,14 +211,14 @@ form {
 
 input::placeholder {
   color: grey;
-} */
-/* 
+}
+
 button {
   text-decoration: none;
   appearance: none;
   border: none;
   box-sizing: content-box;
-} */
+}
 
 .featured-text {
   position: absolute;
@@ -231,5 +239,11 @@ button {
   margin-top: 0.5em;
   padding: 1em;
   background-color: #120e43;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 0;
 }
 </style>
