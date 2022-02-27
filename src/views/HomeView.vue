@@ -104,6 +104,7 @@ const clickOutside = () => {
 };
 
 const handleSpeechRecognition = () => {
+  navigator.vibrate(50)
   // Configure SpeechRecognition
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
