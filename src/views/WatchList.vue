@@ -8,6 +8,8 @@ Object.keys(window.localStorage).forEach((key) => {
 });
 </script>
 <template>
-  <div class="font-bold text-xl dark:text-white text-center p-4">🔖 Your Watchlist</div>
-  <MovieCard :movie-list="movieList" />
+  <div class="dark: bg-black">
+    <div class="font-bold text-xl dark:text-white text-center p-4">🔖 Your Watchlist</div>
+    <MovieCard :movie-list="movieList" />
+  </div>
 </template>
