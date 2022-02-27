@@ -3,6 +3,9 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
+import { NInputGroup, NInput, NButton } from 'naive-ui'
+import { Search } from '@vicons/fa'
+import { Icon } from '@vicons/utils'
 
 import env from "@/env.js";
 const searchText = ref("");
@@ -96,32 +99,38 @@ const handleShowGames = () => {
   showMovies.value = false;
   showSeries.value = false;
 };
-const clickOutside = () => {
-  showRecent.value = false;
-};
+// const clickOutside = () => {
+//   showRecent.value = false;
+// };
 </script>
 
 <template>
-  <div class="w-screen bg-white dark:bg-black">
-    <form autocomplete="off" @submit.prevent="search" class="p-4 w-screen">
-      <RouterLink to="#searchbox">
-        <input
-          class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg dark:bg-searchbar dark:border-none"
-          id="searchbox"
-          v-model="searchText"
-          type="text"
-          placeholder="Looking for something?"
-          @input="update"
-          @click="recentSearches"
-          v-click-outside="clickOutside"
-        />
-      </RouterLink>
+  <div class="w-screen p-4 bg-white dark:bg-black">
+    <form autocomplete="off" @submit.prevent="search" class="w-full flex justify-center">
+      <n-input-group>
+        <n-input status="error" clearable size="large" />
+        <n-button ghost color="#da4163" size="large">
+          <Icon>
+            <Search />
+          </Icon>
+        </n-button>
+      </n-input-group>
+      <!-- <input
+        class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg dark:bg-searchbar dark:border-none"
+        id="searchbox"
+        v-model="searchText"
+        type="text"
+        placeholder="Looking for something?"
+        @input="update"
+        @click="recentSearches"
+        v-click-outside="clickOutside"
+      />-->
 
-      <button
+      <!-- <button
         @click="navigator.vibrate(100)"
         class="bg-searchbtn rounded-r-lg focus:bg-blue-900"
         type="submit"
-      >🔍</button>
+      >🔍</button>-->
       <div
         v-if="showRecent"
         v-for="recentSearch in recentSearhesList.reverse()"
@@ -183,7 +192,7 @@ form {
   grid-template-columns: 3fr 1fr;
   justify-content: space-between;
 }
-input {
+/* input {
   appearance: none;
   border: none;
   outline: none;
@@ -194,14 +203,14 @@ input {
 
 input::placeholder {
   color: grey;
-}
-
+} */
+/* 
 button {
   text-decoration: none;
   appearance: none;
   border: none;
   box-sizing: content-box;
-}
+} */
 
 .featured-text {
   position: absolute;

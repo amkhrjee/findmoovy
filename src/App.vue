@@ -89,30 +89,12 @@ const railStyle = ({ focused, checked }) => {
 <style>
 *,
 ::after,
-::befor *,
-::after,
-::befor *,
-::after *,
-::after,
-::befor *,
-::after,
-::befor *,
-::after *,
-::after,
-::befor *,
-::after,
-::befor *,
-::after,
 ::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
   -webkit-tap-highlight-color: transparent;
-}
-input:checked ~ .dot {
-  transform: translateX(100%);
-  background-color: #242b2e;
 }
 footer a {
   text-decoration: none;
