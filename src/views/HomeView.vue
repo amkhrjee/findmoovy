@@ -3,9 +3,9 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
-import { NInputGroup, NInput, NButton } from 'naive-ui'
-import { Search } from '@vicons/fa'
-import { Icon } from '@vicons/utils'
+import { NInputGroup, NInput, NButton } from "naive-ui";
+import { Search } from "@vicons/fa";
+import { Icon } from "@vicons/utils";
 
 import env from "@/env.js";
 const searchText = ref("");
@@ -104,18 +104,22 @@ const clickOutside = () => {
 };
 
 const handleSpeechRecognition = () => {
-  navigator.vibrate(50)
+  navigator.vibrate(50);
   // Configure SpeechRecognition
   var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   recognition.lang = "en-US";
 
-  recognition.start()
-  recognition.onresult = e => {
-    searchText.value = e.results[0][0].transcript
-    search()
-  }
-}
+  recognition.start();
+  recognition.onresult = (e) => {
+    searchText.value = e.results[0][0].transcript;
+    search();
+  };
+  //todo: add toasts! 
+  recognition.onnomatch = (err) => {
+    searchText.value = "";
+  };
+};
 </script>
 
 <template>
