@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink, RouterView } from "vue-router";
-import { NSwitch, NButton, NConfigProvider, NSpace, NP, NText, NA } from "naive-ui";
 import { Sun, Moon, Bookmark, Github, ExternalLinkAlt } from "@vicons/fa";
 import { Icon } from "@vicons/utils";
 
@@ -61,8 +60,8 @@ const railStyle = ({ focused, checked }) => {
         <Searchengin />
       </Icon>
   </n-space>-->
-  <div class="h-screen flex justify-between flex-col">
-    <main class="h-auto">
+  <n-space vertical justify="space-between" class="h-screen">
+    <main>
       <RouterView />
     </main>
     <n-space justify="center">
@@ -77,7 +76,7 @@ const railStyle = ({ focused, checked }) => {
           </n-text>
         </a>
 
-        <n-text class="ml-1" depth="3">and 🍵 by</n-text>
+        <n-text class="ml-1" depth="3">& 🍵 by</n-text>
         <a href="https://www.twitter.com/amkhrjee" target="_blank" rel="noopener noreferrer">
           <n-text depth="3" type="info">
             amkrjee
@@ -88,7 +87,7 @@ const railStyle = ({ focused, checked }) => {
         </a>
       </n-p>
     </n-space>
-  </div>
+  </n-space>
 </template>
 
 <style>
@@ -100,9 +99,5 @@ const railStyle = ({ focused, checked }) => {
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
   -webkit-tap-highlight-color: transparent;
-}
-footer a {
-  text-decoration: none;
-  color: #1da1f2;
 }
 </style>

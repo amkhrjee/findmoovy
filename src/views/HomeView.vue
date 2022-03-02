@@ -3,11 +3,12 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
-import { NInputGroup, NInput, NButton } from "naive-ui";
-import { Search } from "@vicons/fa";
-import { Icon } from "@vicons/utils";
+// import { NInputGroup, NInput, NButton, NSpace, NModal } from "naive-ui";
+// import { Microphone, Search } from "@vicons/fa";
+// import { Icon } from "@vicons/utils";
 
 import env from "@/env.js";
+import SearchBar from "../components/SearchBar.vue";
 const searchText = ref("");
 const movieList = ref([]);
 const searchTerm = ref("");
@@ -123,77 +124,9 @@ const handleSpeechRecognition = () => {
 </script>
 
 <template>
-  <div class="w-screen p-4 bg-white dark:bg-black">
-    <form autocomplete="off" @submit.prevent="search" class="w-full">
-      <input
-        class="text-xs p-4 text-black bg-white border-searchbtn border-solid border-2 dark:text-white font-bold rounded-l-lg border-r-0 dark:bg-searchbar dark:border-none"
-        id="searchbox"
-        v-model="searchText"
-        type="text"
-        placeholder="Looking for something?"
-        @input="update"
-        @click="recentSearches"
-        v-click-outside="clickOutside"
-      />
-      <button
-        @click="handleSpeechRecognition"
-        class="bg-white border-searchbtn border-solid border-2 border-l-0 dark:bg-searchbar dark:border-none"
-      >🎙️</button>
-      <button
-        @click="navigator.vibrate(100)"
-        class="bg-searchbtn rounded-r-lg focus:bg-blue-900"
-        type="submit"
-      >🔍</button>
-    </form>
-    <div
-      v-if="showRecent"
-      v-for="recentSearch in recentSearhesList.reverse()"
-      class="search-suggest drop-shadow-lg"
-    >
-      <p @click="searchText = recentSearch" style="color: #fff">{{ recentSearch }} ⌚</p>
-    </div>
-    <div
-      v-if="searchList.length != 0 && searchText.length != 0"
-      v-for="search in searchList"
-      class="search-suggest"
-    >
-      <RouterLink :to="'/movies/' + search.imdbID">
-        <p style="color: #fff">{{ search.Title }} ↗️</p>
-      </RouterLink>
-    </div>
-    <div v-if="movieList.length != 0" class="flex p-4 justify-center">
-      <button
-        @click="handleShowAll"
-        class="text-white mr-4 bg-all rounded-xl p-2 border-solid border-{2} border-all focus:border-movies"
-      >🍿 All</button>
-      <button
-        @click="handleShowMovies"
-        class="text-white mr-4 bg-movies rounded-xl p-2 border-solid border-{2} border-movies focus:border-all"
-      >🎬 Movies</button>
-      <button
-        @click="handleShowSeries"
-        class="text-white mr-4 bg-series rounded-xl p-2 border-solid border-{2} border-series focus:border-movies"
-      >🎞️ Series</button>
-      <button
-        @click="handleShowGames"
-        class="text-white mr-4 bg-games rounded-xl p-2 border-solid border-{2} border-games focus:border-all"
-      >🎮 Games</button>
-    </div>
-    <MovieCard v-if="showAll" :movie-list="movieList" />
-    <MovieCard v-if="showMovies" :movie-list="movieList.filter((movie) => movie.Type === 'movie')" />
-    <MovieCard
-      v-if="showSeries"
-      :movie-list="movieList.filter((movie) => movie.Type === 'series')"
-    />
-    <MovieCard v-if="showGames" :movie-list="movieList.filter((movie) => movie.Type === 'game')" />
-
-    <div
-      v-if="searchText.length === 0 && movieList.length == 0"
-      class="h-auto w-full relative flex justify-center mt40"
-    >
-      <img class="w-1/2 p-4" src="@/assets/search.svg" alt="an svg" />
-    </div>
-  </div>
+  <n-space justify="center" class="pt-4">
+    <SearchBar />
+  </n-space>
 </template>
 <style>
 a {
