@@ -12,14 +12,22 @@ const showModal = ref(false)
 
 <template>
     <n-input-group style="width: 100%;">
-        <n-input size="large" round placeholder="Search for a movie" clearable>
+        <n-auto-complete
+            :input-props="{
+                autocomplete: 'disabled'
+            }"
+            size="large"
+            round
+            placeholder="Search for a movie"
+            clearable
+        >
             <template #prefix>
                 <Icon color="grey">
                     <Search />
                 </Icon>
             </template>
-        </n-input>
-        <n-button size="large" round @click="handleVoiceClick">
+        </n-auto-complete>
+        <n-button size="large" @click="handleVoiceClick">
             <Icon>
                 <Microphone />
             </Icon>

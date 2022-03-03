@@ -9,6 +9,7 @@ import MovieCard from "./MovieCard.vue";
 
 import env from "@/env.js";
 import SearchBar from "../components/SearchBar.vue";
+import Trivia from "../components/Trivia.vue";
 const searchText = ref("");
 const movieList = ref([]);
 const searchTerm = ref("");
@@ -116,7 +117,7 @@ const handleSpeechRecognition = () => {
     searchText.value = e.results[0][0].transcript;
     search();
   };
-  //todo: add toasts! 
+  //todo: add toasts!
   recognition.onnomatch = (err) => {
     searchText.value = "";
   };
@@ -126,6 +127,9 @@ const handleSpeechRecognition = () => {
 <template>
   <n-space justify="center" class="pt-4">
     <SearchBar />
+  </n-space>
+  <n-space justify="center" class="pt-4">
+    <Trivia />
   </n-space>
 </template>
 <style>
