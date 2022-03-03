@@ -43,7 +43,7 @@ const shuffle = (array) => {
 };
 
 const fetchTrivia = () => {
-  count++;
+  // count++;
   showConfetti.value = false;
   fetch("https://opentdb.com/api.php?amount=1&category=11&type=multiple")
     .then((res) => res.json())
@@ -69,12 +69,12 @@ onBeforeMount(() => {
 </script>
 <template>
   <n-card v-if="question" style="width: 90%" title="Do you know this one?">
-    <n-p strong>{{ question }}</n-p>
+    <n-p strong>{{ question.replace(/&quot;/g, '\\"') }}</n-p>
     <n-space justify="center">
       <n-button-group style="min-width: 15rem" size="medium" vertical justify="center">
-        <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">{{
-          ans
-        }}</n-button>
+        <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">
+          {{ ans }}
+        </n-button>
       </n-button-group>
       <n-button @click="fetchTrivia" v-if="showConfetti" class="mt-4 ml-4">
         Give me another one

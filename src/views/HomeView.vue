@@ -128,11 +128,11 @@ const handleSpeechRecognition = () => {
   <n-space justify="center" class="pt-4">
     <SearchBar />
   </n-space>
-  <n-space justify="center" class="pt-4">
+  <div class="flex justify-center mt-4">
     <n-message-provider>
       <Trivia />
     </n-message-provider>
-  </n-space>
+  </div>
 </template>
 <style>
 a {
