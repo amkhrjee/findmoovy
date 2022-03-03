@@ -3,12 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import "./index.css";
 import naive from "naive-ui";
-import LottieAnimation from "lottie-web-vue";
 
 const app = createApp(App);
 
 app.use(naive);
-app.use(LottieAnimation);
 app.use(router);
 
 app.mount("#app");
