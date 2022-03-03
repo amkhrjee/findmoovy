@@ -12,6 +12,7 @@
   "dependencies": {
     "lodash-es": "^4.17.21",
     "vue": "^3.2.29",
+    "vue-confetti-explosion": "^1.0.1",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
