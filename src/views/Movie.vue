@@ -2,6 +2,8 @@
 import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import env from "@/env.js";
+import { Icon } from "@vicons/utils";
+import { Imdb, Language, HourglassRegular, Bookmark, Share, Copy } from "@vicons/fa";
 
 const copied = ref(false);
 const movie = ref({});
@@ -64,9 +66,64 @@ onBeforeMount(() => {
 </script>
 <template>
   <n-space vertical class="text-center">
-    <n-h3 class="pt-4">{{ movie.Title }}</n-h3>
-    <div class="w-1/2 m-auto">
+    <n-h3 class="pt-4 mb-0">{{ movie.Title }}</n-h3>
+    <n-tag type="info">{{ movie.Genre }}</n-tag>
+    <div class="w-2/3 m-auto">
       <n-image style="border-radius: 12px" :src="movie.Poster" />
+      <n-card class="mt-4">
+        <n-space justify="space-around">
+          <n-space vertical>
+            <n-h4 class>{{ movie.imdbRating }}</n-h4>
+            <Icon size="large" class="mt-0 pt-0">
+              <Imdb />
+            </Icon>
+          </n-space>
+          <n-space vertical>
+            <n-h4 class>{{ movie.Language }}</n-h4>
+            <Icon size="large" class="mt-0 pt-0">
+              <Language />
+            </Icon>
+          </n-space>
+          <n-space vertical>
+            <n-h4 class>{{ movie.Runtime }}</n-h4>
+            <Icon size="large" class="mt-0 pt-0">
+              <HourglassRegular />
+            </Icon>
+          </n-space>
+        </n-space>
+      </n-card>
+      <n-h3 class="text-left mb-0">What's the plot?</n-h3>
+      <n-ellipsis class="text-left" expand-trigger="click" line-clamp="3">{{
+        movie.Plot
+      }}</n-ellipsis>
+      <n-h3 class="text-left mb-0">Starring</n-h3>
+      <n-p class="text-left mt-0">{{ movie.Actors }}</n-p>
+      <n-button size="large" class="w-full mb-2">
+        Add to Watchlist
+        <template #icon>
+          <Icon>
+            <Bookmark />
+          </Icon>
+        </template>
+      </n-button>
+      <n-button-group class="mb-4" size="large">
+        <n-button>
+          Share
+          <template #icon>
+            <Icon>
+              <Share />
+            </Icon>
+          </template>
+        </n-button>
+        <n-button>
+          Copy Link
+          <template #icon>
+            <Icon>
+              <Copy />
+            </Icon>
+          </template>
+        </n-button>
+      </n-button-group>
     </div>
   </n-space>
 </template>
