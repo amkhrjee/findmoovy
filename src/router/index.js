@@ -22,7 +22,7 @@ const router = createRouter({
       component: WatchList,
     },
     {
-      path: "/results",
+      path: "/results/:name",
       name: "Results",
       component: Results,
     },

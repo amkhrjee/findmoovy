@@ -3,10 +3,6 @@ import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import { debounce } from "lodash-es";
 import MovieCard from "./MovieCard.vue";
-// import { NInputGroup, NInput, NButton, NSpace, NModal } from "naive-ui";
-// import { Microphone, Search } from "@vicons/fa";
-// import { Icon } from "@vicons/utils";
-
 import env from "@/env.js";
 import SearchBar from "../components/SearchBar.vue";
 import Trivia from "../components/Trivia.vue";

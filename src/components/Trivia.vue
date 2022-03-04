@@ -11,14 +11,15 @@ const wrongAns = ref([]);
 const allAns = ref([]);
 const showConfetti = ref(false);
 const shuffledAns = ref([]);
-const count = ref(0);
+const refinedQuestion = ref("");
 const message = useMessage();
 const handleOptionClick = (ans) => {
   if (ans == correctAns.value) {
+    navigator.vibrate(1000);
     message.success("Good job! That's correct!", { duration: 1000 });
     setTimeout(() => {
       showConfetti.value = true;
-    }, 100);
+    }, 1000);
   } else {
     message.error("That's not correct!", { duration: 1000 });
     navigator.vibrate(50);
@@ -72,9 +73,9 @@ onBeforeMount(() => {
     <n-p strong>{{ question.replace(/&quot;/g, '\\"') }}</n-p>
     <n-space justify="center">
       <n-button-group style="min-width: 15rem" size="medium" vertical justify="center">
-        <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">
-          {{ ans }}
-        </n-button>
+        <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">{{
+          ans
+        }}</n-button>
       </n-button-group>
       <n-button @click="fetchTrivia" v-if="showConfetti" class="mt-4 ml-4">
         Give me another one
