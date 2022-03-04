@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Home from "../views/Home.vue";
 import Movie from "../views/Movie.vue";
 import Results from "../views/Results.vue";
 import WatchList from "../views/WatchList.vue";
@@ -8,8 +8,8 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView,
+      name: "Home",
+      component: Home,
     },
     {
       path: "/movies/:id",

@@ -3,6 +3,7 @@ import { onBeforeMount, ref } from "vue";
 import SearchCard from "../components/SearchCard.vue";
 import env from "@/env.js";
 import { useRoute } from "vue-router";
+import router from "../router";
 const route = useRoute();
 
 const searchText = ref("");
@@ -12,6 +13,10 @@ const searchList = ref([]);
 const recentSearhesList = ref([]);
 const count = ref(0);
 const showRecent = ref(false);
+const handleMovieRedirect = (movie) => {
+  router.push(`/movies/${movie.imdbID}`);
+};
+
 onBeforeMount(() => {
   fetch(
     `https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${route.params.name}`
@@ -31,7 +36,12 @@ onBeforeMount(() => {
     <n-tabs class="w-screen" size="large" justify-content="space-around" type="segment">
       <n-tab-pane name="all" tab="All">
         <n-space justify="center">
-          <SearchCard class="h-56" v-for="movie in movieList" :img-src="movie.Poster" />
+          <SearchCard
+            @click="handleMovieRedirect(movie)"
+            class="h-56"
+            v-for="movie in movieList"
+            :img-src="movie.Poster"
+          />
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Movies" tab="Movies">
