@@ -11,10 +11,6 @@ const movieList = ref([]);
 const searchTerm = ref("");
 const searchList = ref([]);
 const recentSearhesList = ref([]);
-const showAll = ref(true);
-const showMovies = ref(false);
-const showSeries = ref(false);
-const showGames = ref(false);
 const count = ref(0);
 const showRecent = ref(false);
 
@@ -23,7 +19,9 @@ const handleVoiceClick = () => {
 };
 const showModal = ref(false);
 const handleRedirect = () => {
-  router.push(`/results/${searchText.value}`);
+  if (searchText.value != "") {
+    router.push(`/results/${searchText.value}`);
+  }
 };
 </script>
 

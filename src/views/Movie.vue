@@ -65,7 +65,7 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <n-space vertical class="text-center">
+  <n-space vertical class="text-center dark:bg-background">
     <n-h3 class="pt-4 mb-0">{{ movie.Title }}</n-h3>
     <n-tag type="info">{{ movie.Genre }}</n-tag>
     <div class="w-2/3 m-auto">
@@ -93,9 +93,9 @@ onBeforeMount(() => {
         </n-space>
       </n-card>
       <n-h3 class="text-left mb-0">What's the plot?</n-h3>
-      <n-ellipsis class="text-left" expand-trigger="click" line-clamp="3">{{
-        movie.Plot
-      }}</n-ellipsis>
+      <n-ellipsis class="text-left" expand-trigger="click" line-clamp="3">
+        <n-p>{{ movie.Plot }}</n-p>
+      </n-ellipsis>
       <n-h3 class="text-left mb-0">Starring</n-h3>
       <n-p class="text-left mt-0">{{ movie.Actors }}</n-p>
       <n-button size="large" class="w-full mb-2">

@@ -31,7 +31,7 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <n-space justify="center">
+  <n-space justify="center" class="dark:bg-background">
     <n-h3 class="pt-4">Showing Results for "{{ $route.params.name }}"</n-h3>
     <n-tabs class="w-screen" size="large" justify-content="space-around" type="segment">
       <n-tab-pane name="all" tab="All">
@@ -47,33 +47,21 @@ onBeforeMount(() => {
       <n-tab-pane name="Movies" tab="Movies">
         <n-space justify="center">
           <div v-for="movie in movieList">
-            <SearchCard
-              class="h-56"
-              v-if="movie.Type === 'movie'"
-              :img-src="movie.Poster"
-            />
+            <SearchCard class="h-56" v-if="movie.Type === 'movie'" :img-src="movie.Poster" />
           </div>
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Series" tab="Series">
         <n-space justify="center">
           <div v-for="movie in movieList">
-            <SearchCard
-              class="h-56"
-              v-if="movie.Type === 'series'"
-              :img-src="movie.Poster"
-            />
+            <SearchCard class="h-56" v-if="movie.Type === 'series'" :img-src="movie.Poster" />
           </div>
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Games" tab="Games">
         <n-space justify="center">
           <div v-for="movie in movieList">
-            <SearchCard
-              class="h-56"
-              v-if="movie.Type === 'game'"
-              :img-src="movie.Poster"
-            />
+            <SearchCard class="h-56" v-if="movie.Type === 'game'" :img-src="movie.Poster" />
           </div>
         </n-space>
       </n-tab-pane>

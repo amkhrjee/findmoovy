@@ -24,6 +24,7 @@ module.exports = {
       black: "#000",
       share: "#5a20cb",
       copy: "#5da3fa",
+      background: '#18181c'
     },
   },
   plugins: [],

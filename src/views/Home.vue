@@ -80,8 +80,3 @@ const handleSpeechRecognition = () => {
     </n-message-provider>
   </div>
 </template>
-<style>
-a {
-  text-decoration: none;
-}
-</style>
