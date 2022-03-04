@@ -10,10 +10,6 @@ const movieList = ref([]);
 const searchTerm = ref("");
 const searchList = ref([]);
 const recentSearhesList = ref([]);
-const showAll = ref(true);
-const showMovies = ref(false);
-const showSeries = ref(false);
-const showGames = ref(false);
 const count = ref(0);
 const showRecent = ref(false);
 onBeforeMount(() => {
@@ -34,21 +30,43 @@ onBeforeMount(() => {
     <n-h3 class="pt-4">Showing Results for "{{ $route.params.name }}"</n-h3>
     <n-tabs class="w-screen" size="large" justify-content="space-around" type="segment">
       <n-tab-pane name="all" tab="All">
-        <n-space>
-          <SearchCard v-for="movie in movieList" :img-src="movie.Poster" />
+        <n-space justify="center">
+          <SearchCard class="h-56" v-for="movie in movieList" :img-src="movie.Poster" />
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Movies" tab="Movies">
-        <n-space>
-          <SearchCard
-            v-for="movie in movieList"
-            v-if="movie?.Type === 'movie'"
-            :img-src="movie.Poster"
-          />
+        <n-space justify="center">
+          <div v-for="movie in movieList">
+            <SearchCard
+              class="h-56"
+              v-if="movie.Type === 'movie'"
+              :img-src="movie.Poster"
+            />
+          </div>
         </n-space>
       </n-tab-pane>
-      <n-tab-pane name="Series" tab="Series"></n-tab-pane>
-      <n-tab-pane name="Games" tab="Games"></n-tab-pane>
+      <n-tab-pane name="Series" tab="Series">
+        <n-space justify="center">
+          <div v-for="movie in movieList">
+            <SearchCard
+              class="h-56"
+              v-if="movie.Type === 'series'"
+              :img-src="movie.Poster"
+            />
+          </div>
+        </n-space>
+      </n-tab-pane>
+      <n-tab-pane name="Games" tab="Games">
+        <n-space justify="center">
+          <div v-for="movie in movieList">
+            <SearchCard
+              class="h-56"
+              v-if="movie.Type === 'game'"
+              :img-src="movie.Poster"
+            />
+          </div>
+        </n-space>
+      </n-tab-pane>
     </n-tabs>
   </n-space>
 </template>
