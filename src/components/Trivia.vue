@@ -69,22 +69,30 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <n-card v-if="question" style="width: 90%" title="Do you know this one?">
-    <n-p strong>{{ question.replace(/&quot;/g, '\\"') }}</n-p>
-    <n-space justify="center">
-      <n-button-group style="min-width: 15rem" size="medium" vertical justify="center">
-        <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">{{
-          ans
-        }}</n-button>
-      </n-button-group>
-      <n-button @click="fetchTrivia" v-if="showConfetti" class="mt-4 ml-4">
-        Give me another one
-        <template #icon>
-          <Icon>
-            <ArrowCircleRight />
-          </Icon>
-        </template>
-      </n-button>
+  <n-card style="width: 90%" title="Do you know this one?">
+    <n-space v-if="question" vertical>
+      <n-p strong>{{ question.replace(/&quot;/g, '\\"') }}</n-p>
+      <n-space justify="center">
+        <n-button-group style="min-width: 15rem" size="medium" vertical justify="center">
+          <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">
+            {{
+              ans
+            }}
+          </n-button>
+        </n-button-group>
+        <n-button @click="fetchTrivia" v-if="showConfetti" class="mt-4 ml-4">
+          Give me another one
+          <template #icon>
+            <Icon>
+              <ArrowCircleRight />
+            </Icon>
+          </template>
+        </n-button>
+      </n-space>
+    </n-space>
+    <n-space vertical v-else>
+      <n-skeleton text :repeat="2" size="medium" />
+      <n-skeleton text />
     </n-space>
   </n-card>
 

@@ -4,9 +4,11 @@ import SearchCard from "../components/SearchCard.vue";
 import env from "@/env.js";
 import { useRoute } from "vue-router";
 import router from "../router";
+import { SadTear } from "@vicons/fa";
+
+import { Icon } from "@vicons/utils";
 const route = useRoute();
 
-const searchText = ref("");
 const movieList = ref([]);
 const searchTerm = ref("");
 const searchList = ref([]);
@@ -35,33 +37,54 @@ onBeforeMount(() => {
     <n-h3 class="pt-4">Showing Results for "{{ $route.params.name }}"</n-h3>
     <n-tabs class="w-screen" size="large" justify-content="space-around" type="segment">
       <n-tab-pane name="all" tab="All">
-        <n-space justify="center">
+        <n-space justify="space-around" align="center">
           <SearchCard
+            v-if="movieList"
             @click="handleMovieRedirect(movie)"
             class="h-56"
             v-for="movie in movieList"
             :img-src="movie.Poster"
           />
+
+          <n-skeleton v-else width="10rem" height="14rem" :sharp="false" />
+          <n-skeleton v-else width="10rem" height="14rem" :sharp="false" />
+          <n-skeleton v-else width="10rem" height="14rem" :sharp="false" />
+          <n-skeleton v-else width="10rem" height="14rem" :sharp="false" />
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Movies" tab="Movies">
-        <n-space justify="center">
+        <n-space justify="space-around" align="center">
           <div v-for="movie in movieList">
-            <SearchCard class="h-56" v-if="movie.Type === 'movie'" :img-src="movie.Poster" />
+            <SearchCard
+              @click="handleMovieRedirect(movie)"
+              class="h-56"
+              v-if="movie.Type === 'movie'"
+              :img-src="movie.Poster"
+            />
           </div>
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Series" tab="Series">
-        <n-space justify="center">
+        <n-space justify="space-around" align="center">
           <div v-for="movie in movieList">
-            <SearchCard class="h-56" v-if="movie.Type === 'series'" :img-src="movie.Poster" />
+            <SearchCard
+              @click="handleMovieRedirect(movie)"
+              class="h-56"
+              v-if="movie.Type === 'series'"
+              :img-src="movie.Poster"
+            />
           </div>
         </n-space>
       </n-tab-pane>
       <n-tab-pane name="Games" tab="Games">
-        <n-space justify="center">
+        <n-space justify="space-around" align="center">
           <div v-for="movie in movieList">
-            <SearchCard class="h-56" v-if="movie.Type === 'game'" :img-src="movie.Poster" />
+            <SearchCard
+              v-if="movie.Type === 'game'"
+              @click="handleMovieRedirect(movie)"
+              class="h-56"
+              :img-src="movie.Poster"
+            />
           </div>
         </n-space>
       </n-tab-pane>

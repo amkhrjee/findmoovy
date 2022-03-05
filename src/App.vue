@@ -60,7 +60,12 @@ const railStyle = ({ focused, checked }) => {
           </n-space>
         </n-space>
 
-        <n-space vertical justify="space-between" class="h-screen dark:bg-background">
+        <n-space
+          vertical
+          justify="space-between"
+          align="center"
+          class="h-screen dark:bg-background"
+        >
           <n-space class="dark:bg-background">
             <RouterView />
           </n-space>
