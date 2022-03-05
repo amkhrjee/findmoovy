@@ -4,17 +4,9 @@ import SearchCard from "../components/SearchCard.vue";
 import env from "@/env.js";
 import { useRoute } from "vue-router";
 import router from "../router";
-import { SadTear } from "@vicons/fa";
-
-import { Icon } from "@vicons/utils";
 const route = useRoute();
 
 const movieList = ref([]);
-const searchTerm = ref("");
-const searchList = ref([]);
-const recentSearhesList = ref([]);
-const count = ref(0);
-const showRecent = ref(false);
 const loading = ref();
 const handleMovieRedirect = (movie) => {
   router.push(`/movies/${movie.imdbID}`);
@@ -28,9 +20,8 @@ onBeforeMount(() => {
     .then((res) => res.json())
     .then((data) => {
       movieList.value = data.Search;
-      // window.sessionStorage.setItem(count.value, searchText.value);
+      window.sessionStorage.setItem(route.params.name, route.params.name);
       loading.value = false;
-      count.value += 1;
     });
 });
 </script>

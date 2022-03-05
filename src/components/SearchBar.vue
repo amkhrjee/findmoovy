@@ -1,16 +1,34 @@
 <script setup>
 import { Microphone, Search } from "@vicons/fa";
 import { Icon } from "@vicons/utils";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import router from "../router";
+// import { debounce } from "lodash-es";
+// import env from "@/env.js";
 
 const searchText = ref("");
-const movieList = ref([]);
-const searchTerm = ref("");
-const searchList = ref([]);
+// const searchTerm = ref("");
+// const searchList = ref([]);
 const recentSearhesList = ref([]);
-const count = ref(0);
-const showRecent = ref(false);
+// const count = ref(0);
+// const showRecent = ref(false);
+
+const existsInSessionStorage = (key) => {
+  if (recentSearhesList.value.includes(window.sessionStorage.getItem(key))) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const options = computed(() => {
+  Object.keys(window.sessionStorage).forEach((key) => {
+    if (key.length <= 3 && !existsInSessionStorage(key)) {
+      recentSearhesList.value.push(window.sessionStorage.getItem(key));
+    }
+  });
+  return recentSearhesList.value;
+});
 
 const handleVoiceClick = () => {
   showModal.value = true;
@@ -26,7 +44,7 @@ const handleVoiceClick = () => {
     router.push(`/results/${searchText.value}`);
     showModal.value = false;
   };
-  //todo: add toasts!
+
   recognition.onnomatch = (err) => {
     console.log(err);
     message.error("Try Again!", { duration: 1000 });
@@ -52,7 +70,8 @@ const handleRedirect = () => {
       v-model:value="searchText"
       placeholder="Search for a movie"
       clearable
-    ></n-auto-complete>
+      :options="options"
+    />
 
     <n-button size="large" @click="handleVoiceClick">
       <Icon>
