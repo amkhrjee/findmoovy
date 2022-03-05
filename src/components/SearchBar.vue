@@ -2,8 +2,6 @@
 import { Microphone, Search } from "@vicons/fa";
 import { Icon } from "@vicons/utils";
 import { ref } from "vue";
-import env from "@/env.js";
-import { RouterLink } from "vue-router";
 import router from "../router";
 
 const searchText = ref("");
@@ -16,10 +14,28 @@ const showRecent = ref(false);
 
 const handleVoiceClick = () => {
   showModal.value = true;
+  navigator.vibrate(50);
+  // Configure SpeechRecognition
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+
+  recognition.start();
+  recognition.onresult = (e) => {
+    searchText.value = e.results[0][0].transcript.slice(0, -1);
+    router.push(`/results/${searchText.value}`);
+    showModal.value = false;
+  };
+  //todo: add toasts!
+  recognition.onnomatch = (err) => {
+    console.log(err);
+    message.error("Try Again!", { duration: 1000 });
+    showModal.value = false;
+  };
 };
 const showModal = ref(false);
 const handleRedirect = () => {
-  if (searchText.value != "") {
+  if (searchText.value.trim().length != "") {
     router.push(`/results/${searchText.value}`);
   }
 };
@@ -44,11 +60,9 @@ const handleRedirect = () => {
       </Icon>
     </n-button>
     <n-button attr-type="submit" size="large" @click="handleRedirect">
-      <!-- <RouterLink to="/results/"> -->
       <Icon>
         <Search />
       </Icon>
-      <!-- </RouterLink> -->
     </n-button>
   </n-input-group>
 

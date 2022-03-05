@@ -50,24 +50,6 @@ const recentSearches = () => {
 // document.getElementById("searchbox").addEventListener("blur", () => {
 //   showRecent.value = false;
 // });
-
-const handleSpeechRecognition = () => {
-  navigator.vibrate(50);
-  // Configure SpeechRecognition
-  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
-  const recognition = new SpeechRecognition();
-  recognition.lang = "en-US";
-
-  recognition.start();
-  recognition.onresult = (e) => {
-    searchText.value = e.results[0][0].transcript;
-    search();
-  };
-  //todo: add toasts!
-  recognition.onnomatch = (err) => {
-    searchText.value = "";
-  };
-};
 </script>
 
 <template>
@@ -75,8 +57,6 @@ const handleSpeechRecognition = () => {
     <SearchBar />
   </n-space>
   <div class="flex justify-center mt-4">
-    <n-message-provider>
-      <Trivia />
-    </n-message-provider>
+    <Trivia />
   </div>
 </template>

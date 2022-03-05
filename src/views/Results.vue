@@ -15,13 +15,13 @@ const searchList = ref([]);
 const recentSearhesList = ref([]);
 const count = ref(0);
 const showRecent = ref(false);
-const loading = ref()
+const loading = ref();
 const handleMovieRedirect = (movie) => {
   router.push(`/movies/${movie.imdbID}`);
 };
 
 onBeforeMount(() => {
-  loading.value = true
+  loading.value = true;
   fetch(
     `https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${route.params.name}`
   )
@@ -29,14 +29,14 @@ onBeforeMount(() => {
     .then((data) => {
       movieList.value = data.Search;
       // window.sessionStorage.setItem(count.value, searchText.value);
-      loading.value = false
+      loading.value = false;
       count.value += 1;
     });
 });
 </script>
 <template>
   <n-space justify="center" class="dark:bg-background">
-    <n-h3 class="pt-4">Showing Results for "{{ $route.params.name }}"</n-h3>
+    <n-h4 class="pt-4">Showing Results for "{{ $route.params.name }}"</n-h4>
     <n-tabs class="w-screen" size="large" justify-content="space-around" type="segment">
       <n-tab-pane name="all" tab="All">
         <n-space justify="space-around" align="center">

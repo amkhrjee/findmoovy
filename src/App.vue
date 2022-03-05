@@ -67,7 +67,9 @@ const railStyle = ({ focused, checked }) => {
           class="h-screen dark:bg-background"
         >
           <n-space class="dark:bg-background">
-            <RouterView />
+            <n-message-provider>
+              <RouterView />
+            </n-message-provider>
           </n-space>
           <n-space justify="center" class="dark:bg-background">
             <n-p depth="3">
@@ -82,7 +84,11 @@ const railStyle = ({ focused, checked }) => {
               </a>
 
               <n-text class="ml-1" depth="3">& 🍵 by</n-text>
-              <a href="https://www.twitter.com/amkhrjee" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.twitter.com/amkhrjee"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <n-text depth="3" type="info">
                   amkrjee
                   <Icon size="0.6rem">
