@@ -3,15 +3,24 @@ import { onBeforeMount, ref } from "vue";
 import { useRoute } from "vue-router";
 import env from "@/env.js";
 import { Icon } from "@vicons/utils";
-import { Imdb, Language, HourglassRegular, Bookmark, Share, Copy } from "@vicons/fa";
-
+import {
+  Imdb,
+  Language,
+  HourglassRegular,
+  Bookmark,
+  Share,
+  Copy,
+  Trash,
+} from "@vicons/fa";
+import { useMessage } from "naive-ui";
+const message = useMessage();
 const copied = ref(false);
 const movie = ref({});
 const route = useRoute();
 const readMore = ref(false);
 const addedToWatchlist = ref(false);
 const removedFromWatchlist = ref(false);
-const loading = ref()
+const loading = ref();
 const link = ref({
   title: "FindMoovy" + movie.value.Title,
   text: "Check out this movie!",
@@ -43,11 +52,13 @@ const removeWatchlist = () => {
   window.localStorage.removeItem(movie.value.imdbID);
   addedToWatchlist.value = false;
   removedFromWatchlist.value = true;
+  message.success("Removed from watchlist", { duration: 1000 });
 };
 const copyToClipboard = () => {
   navigator.clipboard.writeText(link.value.url);
   navigator.vibrate(100);
   copied.value = true;
+  message.success("Link copied", { duration: 1000 });
 };
 const isReadMore = () => {
   readMore.value = !readMore.value;
@@ -55,15 +66,16 @@ const isReadMore = () => {
 const addWatchlist = () => {
   addedToWatchlist.value = true;
   window.localStorage.setItem(movie.value.imdbID, JSON.stringify(movie.value));
+  message.success("Added to watchlist", { duration: 1000 });
   navigator.vibrate(50);
 };
 onBeforeMount(() => {
-  loading.value = true
+  loading.value = true;
   fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=${env.apiKey}&plot=full`)
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;
-      loading.value = false
+      loading.value = false;
     });
 });
 </script>
@@ -116,7 +128,21 @@ onBeforeMount(() => {
       <n-space v-else vertical align="start" class="mb-2">
         <n-skeleton text repeat="2" class="w-64" />
       </n-space>
-      <n-button size="large" class="w-full mb-2">
+
+      <n-button
+        v-if="checkLocalStorage(movie.imdbID)"
+        @click="removeWatchlist"
+        size="large"
+        class="w-full mb-2"
+      >
+        Remove from watchlist
+        <template #icon>
+          <Icon>
+            <Trash />
+          </Icon>
+        </template>
+      </n-button>
+      <n-button v-else @click="addWatchlist" size="large" class="w-full mb-2">
         Add to Watchlist
         <template #icon>
           <Icon>
@@ -125,7 +151,7 @@ onBeforeMount(() => {
         </template>
       </n-button>
       <n-button-group class="mb-4" size="large">
-        <n-button>
+        <n-button @click="shareLink">
           Share
           <template #icon>
             <Icon>
@@ -133,7 +159,7 @@ onBeforeMount(() => {
             </Icon>
           </template>
         </n-button>
-        <n-button>
+        <n-button @click="copyToClipboard">
           Copy Link
           <template #icon>
             <Icon>

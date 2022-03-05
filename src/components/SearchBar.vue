@@ -1,8 +1,10 @@
 <script setup>
 import { Microphone, Search } from "@vicons/fa";
 import { Icon } from "@vicons/utils";
+import { useMessage } from "naive-ui";
 import { computed, ref } from "vue";
 import router from "../router";
+const message = useMessage();
 // import { debounce } from "lodash-es";
 // import env from "@/env.js";
 
@@ -34,7 +36,7 @@ const handleVoiceClick = () => {
   showModal.value = true;
   navigator.vibrate(50);
   // Configure SpeechRecognition
-  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   recognition.lang = "en-US";
 
