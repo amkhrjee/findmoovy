@@ -15,11 +15,13 @@ const searchList = ref([]);
 const recentSearhesList = ref([]);
 const count = ref(0);
 const showRecent = ref(false);
+const loading = ref()
 const handleMovieRedirect = (movie) => {
   router.push(`/movies/${movie.imdbID}`);
 };
 
 onBeforeMount(() => {
+  loading.value = true
   fetch(
     `https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${route.params.name}`
   )
@@ -27,7 +29,7 @@ onBeforeMount(() => {
     .then((data) => {
       movieList.value = data.Search;
       // window.sessionStorage.setItem(count.value, searchText.value);
-
+      loading.value = false
       count.value += 1;
     });
 });
@@ -39,7 +41,7 @@ onBeforeMount(() => {
       <n-tab-pane name="all" tab="All">
         <n-space justify="space-around" align="center">
           <SearchCard
-            v-if="movieList"
+            v-if="!loading"
             @click="handleMovieRedirect(movie)"
             class="h-56"
             v-for="movie in movieList"

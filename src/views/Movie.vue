@@ -11,6 +11,7 @@ const route = useRoute();
 const readMore = ref(false);
 const addedToWatchlist = ref(false);
 const removedFromWatchlist = ref(false);
+const loading = ref()
 const link = ref({
   title: "FindMoovy" + movie.value.Title,
   text: "Check out this movie!",
@@ -57,35 +58,47 @@ const addWatchlist = () => {
   navigator.vibrate(50);
 };
 onBeforeMount(() => {
+  loading.value = true
   fetch(`https://www.omdbapi.com/?i=${route.params.id}&apikey=${env.apiKey}&plot=full`)
     .then((res) => res.json())
     .then((data) => {
       movie.value = data;
+      loading.value = false
     });
 });
 </script>
 <template>
   <n-space vertical class="text-center dark:bg-background">
-    <n-h3 class="pt-4 mb-0">{{ movie.Title }}</n-h3>
-    <n-tag type="info">{{ movie.Genre }}</n-tag>
+    <n-h3 v-if="!loading" class="pt-4 mb-0">{{ movie.Title }}</n-h3>
+    <n-skeleton v-else size="medium" text class="w-1/2 mt-2" />
+    <n-tag v-if="!loading" type="info">{{ movie.Genre }}</n-tag>
+    <n-skeleton v-else text class="w-2/3" />
+
     <div class="w-2/3 m-auto">
-      <n-image style="border-radius: 12px" :src="movie.Poster" />
+      <n-image v-if="!loading" style="border-radius: 12px" :src="movie.Poster" />
+      <n-skeleton v-else height="16rem" class="w-full" :sharp="false" />
+
       <n-card class="mt-4">
         <n-space justify="space-around">
           <n-space vertical>
-            <n-h4 class>{{ movie.imdbRating }}</n-h4>
+            <n-h4 v-if="!loading" class>{{ movie.imdbRating }}</n-h4>
+            <n-skeleton v-else text />
+
             <Icon size="large" class="mt-0 pt-0">
               <Imdb />
             </Icon>
           </n-space>
           <n-space vertical>
-            <n-h4 class>{{ movie.Language }}</n-h4>
+            <n-h4 v-if="!loading" class>{{ movie.Language }}</n-h4>
+            <n-skeleton v-else text />
             <Icon size="large" class="mt-0 pt-0">
               <Language />
             </Icon>
           </n-space>
           <n-space vertical>
-            <n-h4 class>{{ movie.Runtime }}</n-h4>
+            <n-h4 v-if="!loading" class>{{ movie.Runtime }}</n-h4>
+            <n-skeleton v-else text />
+
             <Icon size="large" class="mt-0 pt-0">
               <HourglassRegular />
             </Icon>
@@ -94,10 +107,15 @@ onBeforeMount(() => {
       </n-card>
       <n-h3 class="text-left mb-0">What's the plot?</n-h3>
       <n-ellipsis class="text-left" expand-trigger="click" line-clamp="3">
-        <n-p>{{ movie.Plot }}</n-p>
+        <n-p v-if="!loading">{{ movie.Plot }}</n-p>
+        <n-skeleton v-else text repeat="2" class="w-64" />
+        <n-skeleton v-else text class="w-56" />
       </n-ellipsis>
       <n-h3 class="text-left mb-0">Starring</n-h3>
-      <n-p class="text-left mt-0">{{ movie.Actors }}</n-p>
+      <n-p v-if="!loading" class="text-left mt-0">{{ movie.Actors }}</n-p>
+      <n-space v-else vertical align="start" class="mb-2">
+        <n-skeleton text repeat="2" class="w-64" />
+      </n-space>
       <n-button size="large" class="w-full mb-2">
         Add to Watchlist
         <template #icon>
