@@ -120,13 +120,13 @@ onBeforeMount(() => {
       <n-h3 class="text-left mb-0">What's the plot?</n-h3>
       <n-ellipsis class="text-left" expand-trigger="click" line-clamp="3">
         <n-p v-if="!loading">{{ movie.Plot }}</n-p>
-        <n-skeleton v-else text repeat="2" class="w-64" />
+        <n-skeleton v-else text :repeat="2" class="w-64" />
         <n-skeleton v-else text class="w-56" />
       </n-ellipsis>
       <n-h3 class="text-left mb-0">Starring</n-h3>
       <n-p v-if="!loading" class="text-left mt-0">{{ movie.Actors }}</n-p>
       <n-space v-else vertical align="start" class="mb-2">
-        <n-skeleton text repeat="2" class="w-64" />
+        <n-skeleton text :repeat="2" class="w-64" />
       </n-space>
 
       <n-button

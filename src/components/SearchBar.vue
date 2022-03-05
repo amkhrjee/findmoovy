@@ -36,7 +36,7 @@ const handleVoiceClick = () => {
   showModal.value = true;
   navigator.vibrate(50);
   // Configure SpeechRecognition
-  const SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+  var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   recognition.lang = "en-US";
 
