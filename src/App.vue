@@ -71,8 +71,8 @@ const railStyle = ({ focused, checked }) => {
               <RouterView />
             </n-message-provider>
           </n-space>
-          <n-space justify="center" class="dark:bg-background">
-            <n-p depth="3">
+          <n-space justify="center" class="w-screen text-center dark:bg-background">
+            <n-p depth="3" class="dark:bg-background">
               Made with
               <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer">
                 <n-text type="success">
