@@ -79,11 +79,19 @@ onBeforeMount(() => {
           vertical
           justify="center"
         >
-          <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">
-            {{ ans }}
-          </n-button>
+          <n-button
+            aria-label="answer option"
+            @click="handleOptionClick(ans)"
+            v-for="ans in shuffledAns"
+            >{{ ans }}</n-button
+          >
         </n-button-group>
-        <n-button @click="fetchTrivia" v-if="showConfetti" class="mt-4 ml-4">
+        <n-button
+          aria-label="Give another trivia question"
+          @click="fetchTrivia"
+          v-if="showConfetti"
+          class="mt-4 ml-4"
+        >
           Give me another one
           <template #icon>
             <Icon>

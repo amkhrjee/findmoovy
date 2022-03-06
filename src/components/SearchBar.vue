@@ -6,6 +6,7 @@ import { useMessage } from "naive-ui";
 import { computed, ref } from "vue";
 import router from "../router";
 import env from "@/env.js";
+import { RouterLink } from "vue-router";
 
 const showModal = ref(false);
 const message = useMessage();
@@ -95,12 +96,17 @@ const handleRedirect = () => {
         @input="update"
       />
 
-      <n-button size="large" @click="handleVoiceClick">
+      <n-button aria-label="Voice Input" size="large" @click="handleVoiceClick">
         <Icon>
           <Microphone />
         </Icon>
       </n-button>
-      <n-button attr-type="submit" size="large" @click="handleRedirect">
+      <n-button
+        aria-label="Search"
+        attr-type="submit"
+        size="large"
+        @click="handleRedirect"
+      >
         <Icon>
           <Search />
         </Icon>
@@ -108,9 +114,13 @@ const handleRedirect = () => {
     </n-input-group>
     <n-space v-if="searchText" size="small" justify="center">
       <div v-for="search in searchList">
-        <n-button tertiary size="small" v-if="search.Title.length <= 20">
-          {{ search.Title }}
-        </n-button>
+        <n-button
+          aria-label="search-suggestions"
+          tertiary
+          size="small"
+          v-if="search.Title.length <= 20"
+          >{{ search.Title }}</n-button
+        >
       </div>
     </n-space>
 

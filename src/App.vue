@@ -46,17 +46,24 @@ const railStyle = ({ focused, checked }) => {
               </template>
             </n-switch>
             <RouterLink to="/watchlist">
-              <n-button secondary type="error">
+              <n-button aria-label="Bookmark" secondary type="error">
                 <Icon>
                   <Bookmark />
                 </Icon>
               </n-button>
             </RouterLink>
-            <n-button class secondary type="info">
-              <Icon size="1.2rem" color="white">
-                <Github />
-              </Icon>
-            </n-button>
+            <a
+              href="https://github.com/amkhrjee/findmoovy"
+              alt="Link to github repo"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <n-button aria-label="Link to Github Repo" class secondary type="info">
+                <Icon size="1.2rem" color="white">
+                  <Github />
+                </Icon>
+              </n-button>
+            </a>
           </n-space>
         </n-space>
 

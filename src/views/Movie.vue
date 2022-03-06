@@ -134,6 +134,7 @@ onBeforeMount(() => {
         @click="removeWatchlist"
         size="large"
         class="w-full mb-2"
+        aria-label="remove from watchlist"
       >
         Remove from watchlist
         <template #icon>
@@ -142,7 +143,13 @@ onBeforeMount(() => {
           </Icon>
         </template>
       </n-button>
-      <n-button v-else @click="addWatchlist" size="large" class="w-full mb-2">
+      <n-button
+        aria-label="add to watchlist"
+        v-else
+        @click="addWatchlist"
+        size="large"
+        class="w-full mb-2"
+      >
         Add to Watchlist
         <template #icon>
           <Icon>
@@ -151,7 +158,7 @@ onBeforeMount(() => {
         </template>
       </n-button>
       <n-button-group class="mb-4" size="large">
-        <n-button @click="shareLink">
+        <n-button aria-label="share link" @click="shareLink">
           Share
           <template #icon>
             <Icon>
@@ -159,7 +166,7 @@ onBeforeMount(() => {
             </Icon>
           </template>
         </n-button>
-        <n-button @click="copyToClipboard">
+        <n-button aria-label="copy link" @click="copyToClipboard">
           Copy Link
           <template #icon>
             <Icon>
