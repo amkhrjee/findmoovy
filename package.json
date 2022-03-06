@@ -1,7 +1,7 @@
 {
   "name": "findmoovy",
   "homepage": "https://threefindmoovy.netlify.app/",
-  "version": "0.0.3",
+  "version": "1.1.4",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
+    "unplugin-vue-components": "^0.17.21",
     "vue": "^3.2.29",
     "vue-confetti-explosion": "^1.0.1",
     "vue-router": "^4.0.12"
