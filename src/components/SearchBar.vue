@@ -25,7 +25,7 @@ const existsInSessionStorage = (key) => {
 
 const options = computed(() => {
   Object.keys(window.sessionStorage).forEach((key) => {
-    if (key.length <= 3 && !existsInSessionStorage(key)) {
+    if (key.length <= 8 && !existsInSessionStorage(key)) {
       recentSearhesList.value.push(window.sessionStorage.getItem(key));
     }
   });
