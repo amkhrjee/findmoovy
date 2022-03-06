@@ -73,11 +73,14 @@ onBeforeMount(() => {
     <n-space v-if="question" vertical>
       <n-p strong>{{ question.replace(/&quot;/g, '\\"') }}</n-p>
       <n-space justify="center">
-        <n-button-group style="min-width: 15rem" size="medium" vertical justify="center">
+        <n-button-group
+          style="min-width: 15rem; max-width: 100%; overflow: hidden"
+          size="medium"
+          vertical
+          justify="center"
+        >
           <n-button @click="handleOptionClick(ans)" v-for="ans in shuffledAns">
-            {{
-              ans
-            }}
+            {{ ans }}
           </n-button>
         </n-button-group>
         <n-button @click="fetchTrivia" v-if="showConfetti" class="mt-4 ml-4">

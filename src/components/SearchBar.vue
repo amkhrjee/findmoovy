@@ -1,29 +1,33 @@
 <script setup>
 import { Microphone, Search } from "@vicons/fa";
 import { Icon } from "@vicons/utils";
+import { debounce } from "lodash-es";
 import { useMessage } from "naive-ui";
 import { computed, ref } from "vue";
 import router from "../router";
+import env from "@/env.js";
+
+const showModal = ref(false);
 const message = useMessage();
-// import { debounce } from "lodash-es";
-// import env from "@/env.js";
-
 const searchText = ref("");
-// const searchTerm = ref("");
-// const searchList = ref([]);
+const searchTerm = ref("");
+const searchList = ref([]);
 const recentSearhesList = ref([]);
-// const count = ref(0);
-// const showRecent = ref(false);
 
-const existsInSessionStorage = (key) => {
-  if (recentSearhesList.value.includes(window.sessionStorage.getItem(key))) {
-    return true;
-  } else {
-    return false;
-  }
-};
+const update = debounce((value) => {
+  searchTerm.value = value;
+  searchSuggest();
+}, 300);
 
 const options = computed(() => {
+  const existsInSessionStorage = (key) => {
+    if (recentSearhesList.value.includes(window.sessionStorage.getItem(key))) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   Object.keys(window.sessionStorage).forEach((key) => {
     if (key.length <= 8 && !existsInSessionStorage(key)) {
       recentSearhesList.value.push(window.sessionStorage.getItem(key));
@@ -32,6 +36,20 @@ const options = computed(() => {
   return recentSearhesList.value;
 });
 
+const searchSuggest = () => {
+  if (searchTerm.value.length != 0) {
+    fetch(
+      `https://www.omdbapi.com/?i=tt3896198&apikey=${env.apiKey}&s=${searchTerm.value}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        searchList.value = data.Search.slice(0, 4);
+      })
+      .catch(() => {
+        return;
+      });
+  }
+};
 const handleVoiceClick = () => {
   showModal.value = true;
   navigator.vibrate(50);
@@ -53,7 +71,7 @@ const handleVoiceClick = () => {
     showModal.value = false;
   };
 };
-const showModal = ref(false);
+
 const handleRedirect = () => {
   if (searchText.value.trim().length != "") {
     router.push(`/results/${searchText.value}`);
@@ -62,46 +80,56 @@ const handleRedirect = () => {
 </script>
 
 <template>
-  <n-input-group style="width: 100%">
-    <n-auto-complete
-      :input-props="{
-        autocomplete: 'disabled',
-      }"
-      size="large"
-      round
-      v-model:value="searchText"
-      placeholder="Search for a movie"
-      clearable
-      :options="options"
-    />
+  <n-space vertical>
+    <n-input-group style="width: 100%">
+      <n-auto-complete
+        :input-props="{
+          autocomplete: 'disabled',
+        }"
+        size="large"
+        round
+        v-model:value="searchText"
+        placeholder="Search for a movie"
+        clearable
+        :options="options"
+        @input="update"
+      />
 
-    <n-button size="large" @click="handleVoiceClick">
-      <Icon>
-        <Microphone />
-      </Icon>
-    </n-button>
-    <n-button attr-type="submit" size="large" @click="handleRedirect">
-      <Icon>
-        <Search />
-      </Icon>
-    </n-button>
-  </n-input-group>
+      <n-button size="large" @click="handleVoiceClick">
+        <Icon>
+          <Microphone />
+        </Icon>
+      </n-button>
+      <n-button attr-type="submit" size="large" @click="handleRedirect">
+        <Icon>
+          <Search />
+        </Icon>
+      </n-button>
+    </n-input-group>
+    <n-space v-if="searchText" size="small" justify="center">
+      <div v-for="search in searchList">
+        <n-button tertiary size="small" v-if="search.Title.length <= 20">
+          {{ search.Title }}
+        </n-button>
+      </div>
+    </n-space>
 
-  <n-modal v-model:show="showModal">
-    <n-card
-      style="width: 80%"
-      :bordered="false"
-      size="huge"
-      role="dialog"
-      aria-modal="true"
-    >
-      <lottie-player
-        src="https://assets5.lottiefiles.com/packages/lf20_kuaqfduw.json"
-        background="transparent"
-        speed="1"
-        loop
-        autoplay
-      ></lottie-player>
-    </n-card>
-  </n-modal>
+    <n-modal v-model:show="showModal">
+      <n-card
+        style="width: 80%"
+        :bordered="false"
+        size="huge"
+        role="dialog"
+        aria-modal="true"
+      >
+        <lottie-player
+          src="https://assets5.lottiefiles.com/packages/lf20_kuaqfduw.json"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay
+        ></lottie-player>
+      </n-card>
+    </n-modal>
+  </n-space>
 </template>
