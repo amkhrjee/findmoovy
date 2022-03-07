@@ -118,6 +118,7 @@ const handleRedirect = () => {
           aria-label="search-suggestions"
           tertiary
           size="small"
+          @click="searchText = search.Title"
           v-if="search.Title.length <= 20"
           >{{ search.Title }}</n-button
         >
