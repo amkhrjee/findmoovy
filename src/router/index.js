@@ -1,24 +1,31 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import Movie from "../views/Movie.vue";
-import WatchList from "../views/WatchList.vue";
+import Home from "../views/Home.vue";
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView,
+      name: "Home",
+      component: Home,
     },
     {
       path: "/movies/:id",
       name: "Movie",
-      component: Movie,
+      component: () =>
+        import(/*webpackChunkName: "movie"*/ "../views/Movie.vue"),
     },
     {
       path: "/watchlist",
       name: "Watchlist",
-      component: WatchList,
+      component: () =>
+        import(/*webpackChunkName: "watchlist"*/ "../views/WatchList.vue"),
+    },
+    {
+      path: "/results/:name",
+      name: "Results",
+      component: () =>
+        import(/*webpackChunkName: "movie"*/ "../views/Results.vue"),
     },
   ],
 });

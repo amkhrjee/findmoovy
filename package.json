@@ -1,7 +1,7 @@
 {
   "name": "findmoovy",
-  "homepage": "https://threefindmoovy.netlify.app/",
-  "version": "0.0.3",
+  "homepage": "https://findmoovy.netlify.app/",
+  "version": "1.1.4",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,17 +11,22 @@
   },
   "dependencies": {
     "lodash-es": "^4.17.21",
+    "unplugin-vue-components": "^0.17.21",
     "vue": "^3.2.29",
+    "vue-confetti-explosion": "^1.0.1",
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
+    "@vicons/fa": "^0.12.0",
+    "@vicons/utils": "^0.1.4",
     "@vitejs/plugin-vue": "^2.1.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "autoprefixer": "^10.4.2",
     "eslint": "^8.5.0",
     "eslint-plugin-vue": "^8.2.0",
     "gh-pages": "^3.2.3",
+    "naive-ui": "^2.25.5",
     "postcss": "^8.4.6",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.23",
