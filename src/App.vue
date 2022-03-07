@@ -33,7 +33,12 @@ const railStyle = ({ focused, checked }) => {
             <div class="text-title ml-4 text-xl font-bold">🎬 FindMoovy</div>
           </RouterLink>
           <n-space justify="space-around" align="center">
-            <n-switch v-model:value="darkMode" size="large" :rail-style="railStyle">
+            <n-switch
+              aria-label="dark mode toggle"
+              v-model:value="darkMode"
+              size="large"
+              :rail-style="railStyle"
+            >
               <template #checked-icon>
                 <Icon color="#808080">
                   <Moon />

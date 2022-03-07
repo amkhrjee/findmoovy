@@ -69,7 +69,7 @@ onBeforeMount(() => {
 });
 </script>
 <template>
-  <n-card style="width: 90%" title="Do you know this one?">
+  <n-card aria-label="trivia question" style="width: 90%" title="Do you know this one?">
     <n-space v-if="question" vertical>
       <n-p strong>{{ question.replace(/&quot;/g, '\\"') }}</n-p>
       <n-space justify="center">
