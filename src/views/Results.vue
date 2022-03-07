@@ -34,7 +34,7 @@ onBeforeMount(() => {
           <SearchCard
             v-if="!loading"
             @click="handleMovieRedirect(movie)"
-            class="h-56"
+            class="h-56 w-40 object-cover object-center"
             v-for="movie in movieList"
             :img-src="movie.Poster"
           />
@@ -50,7 +50,7 @@ onBeforeMount(() => {
           <div v-for="movie in movieList">
             <SearchCard
               @click="handleMovieRedirect(movie)"
-              class="h-56"
+              class="h-56 w-40 object-cover object-center"
               v-if="movie.Type === 'movie'"
               :img-src="movie.Poster"
             />
@@ -62,7 +62,7 @@ onBeforeMount(() => {
           <div v-for="movie in movieList">
             <SearchCard
               @click="handleMovieRedirect(movie)"
-              class="h-56"
+              class="h-56 w-40 object-cover object-center"
               v-if="movie.Type === 'series'"
               :img-src="movie.Poster"
             />
@@ -75,7 +75,7 @@ onBeforeMount(() => {
             <SearchCard
               v-if="movie.Type === 'game'"
               @click="handleMovieRedirect(movie)"
-              class="h-56"
+              class="h-56 w-40 object-cover object-center"
               :img-src="movie.Poster"
             />
           </div>
