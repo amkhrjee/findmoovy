@@ -12,8 +12,8 @@ FindMoovy allows you search for your favourite movies, TV Shows and even Video G
 
 - It can also autosuggest stuff while you type.
 
+- A Trivia that tests your film knowledge!
+
 - It remembers what you searched for and shows them when you are about to type something!
 
 ![This is a demo gif](./src/assets/demo.gif)
-
-Link for live website: [FindMoovy](https://findmoovy.netlify.app/)
