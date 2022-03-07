@@ -14,6 +14,6 @@ FindMoovy allows you search for your favourite movies, TV Shows and even Video G
 
 - It remembers what you searched for and shows them when you are about to type something!
 
-![This is a gif](./src/assets/demo.gif)
+![This is a demo gif](./src/assets/demo.gif)
 
 Link for live website: [FindMoovy](https://findmoovy.netlify.app/)
