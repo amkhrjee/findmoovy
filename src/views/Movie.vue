@@ -128,53 +128,54 @@ onBeforeMount(() => {
       <n-space v-else vertical align="start" class="mb-2">
         <n-skeleton text :repeat="2" class="w-64" />
       </n-space>
-
-      <n-button
-        v-if="checkLocalStorage(movie.imdbID)"
-        @click="removeWatchlist"
-        size="large"
-        class="w-full mb-2"
-        aria-label="remove from watchlist"
-      >
-        Remove from watchlist
-        <template #icon>
-          <Icon>
-            <Trash />
-          </Icon>
-        </template>
-      </n-button>
-      <n-button
-        aria-label="add to watchlist"
-        v-else
-        @click="addWatchlist"
-        size="large"
-        class="w-full mb-2"
-      >
-        Add to Watchlist
-        <template #icon>
-          <Icon>
-            <Bookmark />
-          </Icon>
-        </template>
-      </n-button>
-      <n-button-group class="mb-4" size="large">
-        <n-button aria-label="share link" @click="shareLink">
-          Share
+      <div class="text-center flex flex-col justify-center items-center">
+        <n-button
+          v-if="checkLocalStorage(movie.imdbID)"
+          @click="removeWatchlist"
+          size="large"
+          class="w-full mb-2"
+          aria-label="remove from watchlist"
+        >
+          Remove from watchlist
           <template #icon>
             <Icon>
-              <Share />
+              <Trash />
             </Icon>
           </template>
         </n-button>
-        <n-button aria-label="copy link" @click="copyToClipboard">
-          Copy Link
+        <n-button
+          aria-label="add to watchlist"
+          v-else
+          @click="addWatchlist"
+          size="large"
+          class="w-full mb-2"
+        >
+          Add to Watchlist
           <template #icon>
             <Icon>
-              <Copy />
+              <Bookmark />
             </Icon>
           </template>
         </n-button>
-      </n-button-group>
+        <n-button-group class="mb-4" size="large">
+          <n-button aria-label="share link" @click="shareLink">
+            Share
+            <template #icon>
+              <Icon>
+                <Share />
+              </Icon>
+            </template>
+          </n-button>
+          <n-button aria-label="copy link" @click="copyToClipboard">
+            Copy IMDB Link
+            <template #icon>
+              <Icon>
+                <Copy />
+              </Icon>
+            </template>
+          </n-button>
+        </n-button-group>
+      </div>
     </div>
   </n-space>
 </template>
