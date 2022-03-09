@@ -1,7 +1,7 @@
 <script setup>
 import { defineAsyncComponent } from "vue";
 import SearchBar from "../components/SearchBar.vue";
-const Trivia = defineAsyncComponent(() => import("../components/Trivia.vue"));
+import Trivia from "../components/Trivia.vue";
 </script>
 
 <template>
