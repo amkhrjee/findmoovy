@@ -87,7 +87,12 @@ onBeforeMount(() => {
     <n-skeleton v-else text class="w-2/3" />
 
     <div class="w-2/3 m-auto">
-      <n-image v-if="!loading" style="border-radius: 12px" :src="movie.Poster" />
+      <n-image
+        v-if="!loading"
+        style="border-radius: 12px"
+        :src="movie.Poster"
+        fallback-src="https://i.imgur.com/yT9EQzK_d.webp?maxwidth=760&fidelity=grand"
+      />
       <n-skeleton v-else height="16rem" class="w-full" :sharp="false" />
 
       <n-card class="mt-4">

@@ -8,6 +8,6 @@ defineProps({
     class="m-0 p-0 rounded-lg"
     preview-disabled
     :src="imgSrc"
-    fallback-src="../assets/imageNotFound.png"
+    fallback-src="https://i.imgur.com/yT9EQzK_d.webp?maxwidth=760&fidelity=grand"
   />
 </template>
