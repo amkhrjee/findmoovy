@@ -1,54 +1,55 @@
 {
   "short_name": "FindMoovy",
-  "name": "FindMoovy: Find your favorite movies and shows!",
+  "name": "FindMoovy",
+  "id": "/",
   "icons": [
     {
-      "src": "./src/assets/icons/maskable_icon_x512.png",
+      "src": "/icons/maskable_icon_x512.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/maskable_icon_x384.png",
       "type": "image/png",
       "sizes": "384x384",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/maskable_icon_x192.png",
       "type": "image/png",
       "sizes": "192x192",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/maskable_icon_x128.png",
       "type": "image/png",
       "sizes": "128x128",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/maskable_icon_x96.png",
       "type": "image/png",
       "sizes": "96x96",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/maskable_icon_x72.png",
       "type": "image/png",
       "sizes": "72x72",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     },
     {
       "src": "/icons/maskable_icon_x48.png",
       "type": "image/png",
       "sizes": "48x48",
-      "purpose": "maskable"
+      "purpose": "maskable any"
     }
   ],
-  "start_url": "https://findmoovy.netlify.app",
+  "start_url": "/",
   "background_color": "#18181c",
   "display": "standalone",
-  "scope": "https://findmoovy.netlify.app/",
+  "scope": "/",
   "theme_color": "#000",
   "description": "Find your favorite movies & Shows!"
 }
