@@ -46,7 +46,7 @@
       "purpose": "maskable any"
     }
   ],
-  "start_url": "https://findmoovy.netlify.app/",
+  "start_url": ".",
   "background_color": "#18181c",
   "display": "standalone",
   "scope": "/",
